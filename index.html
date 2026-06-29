@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SITHELO NPO – Sivusa Ithemba Lembokodo</title>
+<link rel="icon" type="image/png" href="/assets/logo.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<!-- -- NAVIGATION -- -->
+<nav id="main-nav">
+  <a class="nav-logo" href="#" onclick="showPage('home')">
+    <img src="/assets/logo.png" alt="SITHELO NPO Logo" id="nav-logo-img" style="height:52px;width:auto;border-radius:50%;object-fit:cover;">
+    <div class="nav-logo-text">
+      <span class="name">SITHELO</span>
+      <span class="tagline">Sivusa Ithemba Lembokodo NPO</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home')">Home</a></li>
+    <li><a href="#" onclick="showPage('about')">About Us</a></li>
+    <li><a href="#" onclick="showPage('gallery')">Gallery</a></li>
+    <li><a href="#" onclick="showPage('news')">News &amp; Blog</a></li>
+    <li><a href="#" onclick="showPage('volunteer')">Volunteer</a></li>
+    <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+    <li><a href="#" onclick="showPage('donate')" class="donate-btn">Get Involved</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#" onclick="showPage('home');toggleMenu()"><i class="fas fa-home"></i> Home</a>
+  <a href="#" onclick="showPage('about');toggleMenu()"><i class="fas fa-info-circle"></i> About Us</a>
+  <a href="#" onclick="showPage('gallery');toggleMenu()"><i class="fas fa-images"></i> Gallery</a>
+  <a href="#" onclick="showPage('news');toggleMenu()"><i class="fas fa-newspaper"></i> News &amp; Blog</a>
+  <a href="#" onclick="showPage('volunteer');toggleMenu()"><i class="fas fa-hands-helping"></i> Volunteer</a>
+  <a href="#" onclick="showPage('contact');toggleMenu()"><i class="fas fa-phone"></i> Contact</a>
+  <a href="#" class="donate-btn" onclick="showPage('donate');toggleMenu()"><i class="fas fa-envelope"></i> Get Involved</a>
+</div>
+
+<!-- ==============================================
+     PAGE 1: HOME
+============================================== -->
+<div class="page active" id="page-home">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Sivusa Ithemba Lembokodo</div>
+        <h1>Igniting Hope<br><span>Empowering</span><br>Every Woman</h1>
+        <p>SITHELO NPO uplifts women, youth and children in Durban through skills training, education drives, community engagement and mentorship programmes &mdash; because when women rise, communities thrive.</p>
+        <div class="hero-btns">
+          <a href="#" class="btn-primary" onclick="showPage('about')">Our Mission</a>
+          <a href="#" class="btn-outline" onclick="showPage('contact')">Get Involved</a>
+        </div>
+
+      </div>
+      <div class="hero-visual">
+        <div class="hero-logo-wrap">
+          <img id="hero-logo" src="/assets/logo.png" alt="SITHELO NPO" style="width:220px;height:220px;object-fit:contain;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact Stats -->
+  <section class="impact-stats">
+    <div class="impact-stats-inner">
+      <div class="impact-stat">
+        <div class="impact-num-wrap">
+          <span class="impact-num" data-target="16">0</span>
+        </div>
+        <span class="impact-label">Years of Impact</span>
+      </div>
+      <div class="impact-stat">
+        <div class="impact-num-wrap">
+          <span class="impact-num" data-target="500">0</span><span class="impact-num-suffix">+</span>
+        </div>
+        <span class="impact-label">Lives Changed</span>
+      </div>
+      <div class="impact-stat">
+        <div class="impact-num-wrap">
+          <span class="impact-num" data-target="12">0</span>
+        </div>
+        <span class="impact-label">Active Programmes</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Focus Areas -->
+  <section class="focus-section">
+    <div class="section-header">
+      <div class="section-eyebrow">What We Do</div>
+      <h2 class="section-title">Our Areas of Focus</h2>
+      <p class="section-sub">From grassroots community engagement to skills development programmes, our work spans every dimension of empowerment.</p>
+    </div>
+    <div class="focus-grid">
+      <div class="focus-card" onclick="showPage('programmes')">
+        <span class="focus-icon"><i class="fas fa-venus"></i></span>
+        <h3>Women Empowerment</h3>
+        <p>Leadership training, entrepreneurship support and advocacy that helps women claim their rightful place in society.</p>
+      </div>
+      <div class="focus-card" onclick="showPage('programmes')">
+        <span class="focus-icon"><i class="fas fa-seedling"></i></span>
+        <h3>Youth Development</h3>
+        <p>Mentorship, life skills and opportunity pathways that equip young people to become confident leaders of tomorrow.</p>
+      </div>
+      <div class="focus-card" onclick="showPage('programmes')">
+        <span class="focus-icon"><i class="fas fa-baby"></i></span>
+        <h3>Children's Welfare</h3>
+        <p>Safe spaces, nutritional support and holistic care that protect children's dignity, safety and potential.</p>
+      </div>
+      <div class="focus-card" onclick="showPage('programmes')">
+        <span class="focus-icon"><i class="fas fa-home"></i></span>
+        <h3>Community Engagement</h3>
+        <p>Neighbourhood outreach, awareness campaigns and local partnership building that creates lasting social bonds.</p>
+      </div>
+      <div class="focus-card" onclick="showPage('programmes')">
+        <span class="focus-icon"><i class="fas fa-book"></i></span>
+        <h3>School Drives</h3>
+        <p>Stationery collections, uniform donations and reading programmes ensuring no child goes without the tools to learn.</p>
+      </div>
+      <div class="focus-card" onclick="showPage('programmes')">
+        <span class="focus-icon"><i class="fas fa-tools"></i></span>
+        <h3>Skills &amp; Trade</h3>
+        <p>Vocational training in crafts, trades and digital skills &mdash; giving community members tools for sustainable livelihoods.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- Testimonials on home page (2 cards) -->
+  <section class="testimonials" style="margin-top:0;">
+    <div class="section-header">
+      <div class="section-eyebrow">Community Voices</div>
+      <h2 class="section-title">Words That Keep Us Going</h2>
+      <p class="section-sub">The real impact of SITHELO lives in the lives of those we walk alongside.</p>
+    </div>
+    <div class="testi-grid" style="grid-template-columns: repeat(auto-fit,minmax(260px,1fr));">
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">SITHELO gave me more than a skill &mdash; they gave me confidence I never knew I had. I now run my own small sewing business and employ two other women from my street.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">N</div>
+          <div class="testi-info">
+            <div class="testi-name">Nomsa D.</div>
+            <div class="testi-role">Skills Programme Graduate, Montclair</div>
+            <div class="testi-stars"><i class="fas fa-star" style="color:#F5A623;"></i><i class="fas fa-star" style="color:#F5A623;"></i><i class="fas fa-star" style="color:#F5A623;"></i><i class="fas fa-star" style="color:#F5A623;"></i><i class="fas fa-star" style="color:#F5A623;"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">The school drive changed everything for my children. They walked into the new term with new stationery and a new sense of belonging. I'm forever grateful to this organisation.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">T</div>
+          <div class="testi-info">
+            <div class="testi-name">Thandi M.</div>
+            <div class="testi-role">Parent Beneficiary, Durban South</div>
+            <div class="testi-stars"><i class="fas fa-star" style="color:#F5A623;"></i><i class="fas fa-star" style="color:#F5A623;"></i><i class="fas fa-star" style="color:#F5A623;"></i><i class="fas fa-star" style="color:#F5A623;"></i><i class="fas fa-star" style="color:#F5A623;"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">As a young man who almost dropped out, SITHELO's youth programme redirected my path. I finished matric and I'm now studying engineering. They believed in me first.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">S</div>
+          <div class="testi-info">
+            <div class="testi-name">Sipho K.</div>
+            <div class="testi-role">Youth Programme Participant</div>
+            <div class="testi-stars"><i class="fas fa-star" style="color:#F5A623;"></i><i class="fas fa-star" style="color:#F5A623;"></i><i class="fas fa-star" style="color:#F5A623;"></i><i class="fas fa-star" style="color:#F5A623;"></i><i class="fas fa-star" style="color:#F5A623;"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Band -->
+  <div class="pink-band">
+    <h2>Ready to Make a Difference?</h2>
+    <p>Whether you volunteer, donate or partner with us &mdash; every act of support changes a life.</p>
+    <a href="#" onclick="showPage('contact')">Get in Touch Today</a>
+  </div>
+
+</div>
+
+<!-- ==============================================
+     PAGE: DONATE (PayFast Sandbox Integration)
+============================================== -->
+<div class="page" id="page-donate">
+  <div class="about-hero">
+    <h1>Make a <span>Donation</span></h1>
+    <p>Your contribution directly supports our skills training, school drives, and community empowerment programmes. Help us ignite hope today.</p>
+  </div>
+
+  <div class="about-content">
+    <div class="section-header">
+      <div class="section-eyebrow">Support Our Work</div>
+      <h2 class="section-title">Choose Your Impact</h2>
+      <p class="section-sub">Every rand you contribute goes directly to empowering women, youth and children in Durban. Select an amount below to begin your secure donation.</p>
+    </div>
+    
+    <div style="max-width: 560px; margin: 0 auto; background: var(--off-white); padding: 44px; border-radius: var(--radius); box-shadow: var(--shadow-sm);">
+      <!--
+        ============================================================
+        PayFast Sandbox Payment Form
+        ============================================================
+        ACTION:  https://sandbox.payfast.co.za/eng/process  (SANDBOX)
+        LIVE:    https://www.payfast.co.za/eng/process       (PRODUCTION)
+
+        Replace merchant_id and merchant_key with your live
+        credentials when going to production. Also update the
+        return, cancel, and notify URLs to your production domain.
+        ============================================================
+      -->
+      <form
+        id="donate-form"
+        action="https://sandbox.payfast.co.za/eng/process"
+        method="POST"
+        onsubmit="return prepareDonation()"
+        style="display: flex; flex-direction: column; gap: 20px;"
+      >
+        <!-- ── PayFast Required Hidden Fields ── -->
+        <!-- Sandbox Merchant ID (replace with your live ID for production) -->
+        <input type="hidden" name="merchant_id" value="10004002">
+        <!-- Sandbox Merchant Key (replace with your live key for production) -->
+        <input type="hidden" name="merchant_key" value="q1cd2rdny4a53">
+
+        <!-- Return URLs — where PayFast redirects the user after payment -->
+        <input type="hidden" name="return_url" id="pf-return-url" value="">
+        <input type="hidden" name="cancel_url" id="pf-cancel-url" value="">
+        <!-- ITN (Instant Transaction Notification) — server-to-server webhook -->
+        <input type="hidden" name="notify_url" id="pf-notify-url" value="">
+
+        <!-- Payment details -->
+        <input type="hidden" name="item_name" value="SITHELO NPO Donation">
+        <input type="hidden" name="item_description" value="Supporting women, youth and children empowerment programmes in Durban">
+        <!-- This hidden field is dynamically updated by main.js before submit -->
+        <input type="hidden" name="amount" id="pf-amount" value="250.00">
+
+        <!-- Donor information (mapped to PayFast field names) -->
+        <input type="hidden" name="name_first" id="pf-name-first" value="">
+        <input type="hidden" name="email_address" id="pf-email-address" value="">
+
+        <!-- ── Visible Form UI ── -->
+        <div class="form-group full">
+          <label>Select Amount</label>
+          <div id="donate-amount-options" style="display: flex; gap: 16px; margin-top: 8px; width: 100%;">
+            <label class="donate-amount-label" data-amount="100" style="flex: 1; display: block; width: 100%; background: white; border: 2px solid var(--silver-light); padding: 14px 0; border-radius: 10px; text-align: center; cursor: pointer; transition: all 0.2s;">
+              <input type="radio" name="donate_amount" value="100" style="display: none;">
+              <span style="font-size: 1.2rem; font-weight: 700; color: var(--magenta);">R100</span>
+            </label>
+            <label class="donate-amount-label active" data-amount="250" style="flex: 1; display: block; width: 100%; background: white; border: 2px solid var(--magenta); padding: 14px 0; border-radius: 10px; text-align: center; cursor: pointer; transition: all 0.2s;">
+              <input type="radio" name="donate_amount" value="250" checked style="display: none;">
+              <span style="font-size: 1.2rem; font-weight: 700; color: var(--magenta);">R250</span>
+            </label>
+            <label class="donate-amount-label" data-amount="500" style="flex: 1; display: block; width: 100%; background: white; border: 2px solid var(--silver-light); padding: 14px 0; border-radius: 10px; text-align: center; cursor: pointer; transition: all 0.2s;">
+              <input type="radio" name="donate_amount" value="500" style="display: none;">
+              <span style="font-size: 1.2rem; font-weight: 700; color: var(--magenta);">R500</span>
+            </label>
+          </div>
+        </div>
+        <div class="form-group full">
+          <label for="d-custom">Or Custom Amount (R)</label>
+          <input type="number" id="d-custom" min="10" step="0.01" placeholder="e.g. 1000">
+        </div>
+        <div class="form-group full">
+          <label for="d-name">Full Name</label>
+          <input type="text" id="d-name" placeholder="Your Name" required>
+        </div>
+        <div class="form-group full">
+          <label for="d-email">Email Address</label>
+          <input type="email" id="d-email" placeholder="Your Email" required>
+        </div>
+
+        <!-- Security badge -->
+        <div style="display: flex; align-items: center; gap: 10px; padding: 14px 16px; background: rgba(217,22,111,0.05); border-radius: 10px; border: 1px solid var(--magenta-pale);">
+          <i class="fas fa-lock" style="color: var(--magenta); font-size: 1.1rem;"></i>
+          <span style="font-size: 0.82rem; color: var(--grey-text); line-height: 1.4;">Your payment is processed securely via <strong style="color: var(--dark);">PayFast</strong>. We never store your banking details.</span>
+        </div>
+
+        <button type="submit" id="donate-submit-btn" class="form-submit">
+          <i class="fas fa-heart" style="margin-right: 6px;"></i> Donate Now — Secure Checkout
+        </button>
+      </form>
+    </div>
+
+    <!-- Sandbox notice — remove for production -->
+    <p style="text-align: center; margin-top: 20px; font-size: 0.78rem; color: var(--silver); letter-spacing: 0.3px;">
+      <i class="fas fa-flask" style="margin-right: 4px;"></i> Currently using PayFast <strong>Sandbox</strong> (test mode). No real charges will be made.
+    </p>
+  </div>
+
+</div>
+<!-- ==============================================
+     PAGE 2: ABOUT
+============================================== -->
+<div class="page" id="page-about">
+  <div class="about-hero">
+    <h1>About <span>SITHELO NPO</span></h1>
+    <p>For over 16 years, we have walked alongside women, youth and children in Durban &mdash; igniting hope, building resilience and transforming lives through purpose-driven community action.</p>
+  </div>
+
+  <div class="about-content">
+    <div class="about-grid">
+      <div class="about-text">
+        <h2>Our Story</h2>
+        <p>SITHELO &mdash; Sivusa Ithemba Lembokodo &mdash; was established in 2008 in Montclair, Durban, born from a simple but powerful conviction: that every woman, every child and every young person deserves the opportunity to flourish.</p>
+        <p>What began as a small community gathering has grown into a registered NPO with structured programmes reaching hundreds of beneficiaries across the Durban South region and beyond.</p>
+        <p>Our name means <em>"reviving the hope of a strong woman"</em> &mdash; a declaration that underpins every programme, initiative and relationship we build.</p>
+      </div>
+      <div class="about-text">
+        <h2>What Drives Us</h2>
+        <ul>
+          <li>Women deserve economic independence and social equality</li>
+          <li>Youth need direction, mentorship and real opportunity</li>
+          <li>Children require safety, nutrition and access to education</li>
+          <li>Communities grow stronger when they support one another</li>
+          <li>Skills are the most durable form of empowerment</li>
+          <li>Every voice in the community matters and deserves to be heard</li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="divider" style="margin: 0;">
+
+    <div style="padding: 48px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+      <div class="about-text">
+        <h2>Our Vision</h2>
+        <p>A society in which every woman stands in her power, every young person has a clear and hopeful path forward, and every child grows up in safety, dignity and love.</p>
+        <h2 style="margin-top: 28px;">Our Mission</h2>
+        <p>To ignite and sustain hope in communities through women empowerment, youth development, children's welfare and skills training &mdash; creating a ripple of positive change that extends across generations.</p>
+      </div>
+      <div>
+        <div style="background: var(--magenta-pale); border-radius: var(--radius); padding: 36px 28px; border-left: 4px solid var(--magenta);">
+          <div style="font-size:1.8rem; margin-bottom:12px;"><i class="fas fa-fire"></i></div>
+          <p style="font-family:'Playfair Display',serif; font-size:1.25rem; font-style:italic; color:var(--magenta-dark); line-height:1.5;">"Sivusa Ithemba Lembokodo &mdash; reviving the hope of a strong woman. This is not just our name. It is our promise."</p>
+          <p style="font-size:0.82rem; color:var(--grey-text); margin-top:14px;">&mdash; SITHELO NPO, Est. 2008</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <div class="section-eyebrow">Our Foundation</div>
+      <h2 class="section-title">Values We Live By</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card"><div class="v-icon"><i class="fas fa-heart"></i></div><h4>Compassion</h4><p>Every person we serve is met with dignity, care and genuine concern for their wellbeing.</p></div>
+      <div class="value-card"><div class="v-icon"><i class="fas fa-handshake"></i></div><h4>Ubuntu</h4><p>We are because others are &mdash; our work is rooted in the collective strength of community.</p></div>
+      <div class="value-card"><div class="v-icon"><i class="fas fa-fire-alt"></i></div><h4>Resilience</h4><p>We build the capacity to rise again &mdash; in every woman, every young person we walk with.</p></div>
+      <div class="value-card"><div class="v-icon"><i class="fas fa-globe-africa"></i></div><h4>Inclusivity</h4><p>Our doors are open to all who need support, regardless of background or circumstance.</p></div>
+      <div class="value-card"><div class="v-icon"><i class="fas fa-bullhorn"></i></div><h4>Advocacy</h4><p>We speak up for those whose voices have been silenced and fight for systemic change.</p></div>
+      <div class="value-card"><div class="v-icon"><i class="fas fa-magic"></i></div><h4>Integrity</h4><p>We are accountable to our community, transparent in our operations and honest in all we do.</p></div>
+    </div>
+  </div>
+
+  <div class="pink-band">
+    <h2>Join Our Movement</h2>
+    <p>Volunteer, donate resources, or partner with us &mdash; every contribution fuels the flame of hope.</p>
+    <a href="#" onclick="showPage('contact')">Connect With Us</a>
+  </div>
+
+</div>
+
+<!-- ==============================================
+     PAGE 3: GALLERY
+============================================== -->
+<div class="page" id="page-gallery">
+  <div class="gallery-header">
+    <h1>Our Gallery</h1>
+    <p>A glimpse into the lives we touch, the programmes we run and the community we call home.</p>
+  </div>
+
+  <div class="gallery-filters">
+    <button class="filter-btn active" onclick="filterGallery('all', this)">All</button>
+    <button class="filter-btn" onclick="filterGallery('school', this)">School Drives</button>
+    <button class="filter-btn" onclick="filterGallery('skills', this)">Skills Training</button>
+    <button class="filter-btn" onclick="filterGallery('women', this)">Women's Programmes</button>
+    <button class="filter-btn" onclick="filterGallery('youth', this)">Youth Events</button>
+    <button class="filter-btn" onclick="filterGallery('community', this)">Community</button>
+  </div>
+
+  <div class="gallery-grid" id="gallery-grid">
+    <!-- Gallery items generated by JS -->
+  </div>
+
+  <!-- YouTube Video -->
+  <div class="video-section">
+    <div class="section-header">
+      <div class="section-eyebrow">Watch Our Story</div>
+      <h2 class="section-title">See SITHELO in Action</h2>
+      <p class="section-sub">A short window into the heart of our work and the community we serve.</p>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/PNd3M_VxnrU" title="SITHELO NPO Video" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+</div>
+
+<!-- ==============================================
+     PAGE 4: NEWS & BLOG
+============================================== -->
+<div class="page" id="page-news">
+  <div class="news-header">
+    <h1>News <span>&amp;</span> Blog</h1>
+    <p>Stories from the field, programme updates and community celebrations.</p>
+  </div>
+
+  <div class="news-grid">
+    <div class="news-card">
+      <div class="news-card-img"><i class="fas fa-graduation-cap"></i></div>
+      <div class="news-card-body">
+        <span class="news-tag">School Drive</span>
+        <h3>Back-to-School Drive 2025 Reaches 120 Learners in Montclair</h3>
+        <p>This January, SITHELO distributed over 120 stationery packs and school uniforms to learners across three primary schools, ensuring every child started the year ready to learn.</p>
+        <div class="news-meta"><i class="far fa-calendar-alt"></i> February 2025 &nbsp;&bull;&nbsp; <i class="far fa-user"></i> SITHELO Team</div>
+        <a href="#" class="news-read-more" onclick="showToast('Full article coming soon!')">Read More &rarr;</a>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-card-img"><i class="fas fa-cut"></i></div>
+      <div class="news-card-body">
+        <span class="news-tag">Skills Training</span>
+        <h3>Sewing &amp; Crafts Programme Graduates its Fifth Cohort</h3>
+        <p>Fifteen women received certificates in our sewing and crafts skills programme &mdash; many of whom have already secured orders and started earning independently within weeks of graduating.</p>
+        <div class="news-meta"><i class="far fa-calendar-alt"></i> November 2024 &nbsp;&bull;&nbsp; <i class="far fa-user"></i> SITHELO Team</div>
+        <a href="#" class="news-read-more" onclick="showToast('Full article coming soon!')">Read More &rarr;</a>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-card-img"><i class="fas fa-female"></i></div>
+      <div class="news-card-body">
+        <span class="news-tag">Women's Month</span>
+        <h3>Celebrating Womanhood: August Dialogue Series Highlights</h3>
+        <p>During Women's Month, SITHELO hosted three community dialogues focused on gender-based violence, economic independence and mental health &mdash; drawing together over 200 participants.</p>
+        <div class="news-meta"><i class="far fa-calendar-alt"></i> September 2024 &nbsp;&bull;&nbsp; <i class="far fa-user"></i> SITHELO Team</div>
+        <a href="#" class="news-read-more" onclick="showToast('Full article coming soon!')">Read More &rarr;</a>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-card-img"><i class="fas fa-trophy"></i></div>
+      <div class="news-card-body">
+        <span class="news-tag">Recognition</span>
+        <h3>SITHELO NPO Honoured at Durban Community Awards 2024</h3>
+        <p>We are deeply humbled to have been recognised for our sustained commitment to community upliftment. This award belongs to every woman, child and volunteer who is part of the SITHELO family.</p>
+        <div class="news-meta"><i class="far fa-calendar-alt"></i> July 2024 &nbsp;&bull;&nbsp; <i class="far fa-user"></i> SITHELO Team</div>
+        <a href="#" class="news-read-more" onclick="showToast('Full article coming soon!')">Read More &rarr;</a>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-card-img"><i class="fas fa-shoe-prints"></i></div>
+      <div class="news-card-body">
+        <span class="news-tag">Community Drive</span>
+        <h3>Winter Warmth: 200 Pairs of Shoes Distributed to Children</h3>
+        <p>Through generous donations from local businesses and individuals, SITHELO was able to give 200 children warm shoes before winter set in &mdash; keeping feet warm and spirits even warmer.</p>
+        <div class="news-meta"><i class="far fa-calendar-alt"></i> June 2024 &nbsp;&bull;&nbsp; <i class="far fa-user"></i> SITHELO Team</div>
+        <a href="#" class="news-read-more" onclick="showToast('Full article coming soon!')">Read More &rarr;</a>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-card-img"><i class="fas fa-laptop"></i></div>
+      <div class="news-card-body">
+        <span class="news-tag">Youth Tech</span>
+        <h3>Digital Skills Workshop Equips 30 Young People for the Future</h3>
+        <p>In partnership with a local technology sponsor, we ran a two-day digital literacy bootcamp covering CV building, email communication and basic computing for 30 young people aged 16&ndash;25.</p>
+        <div class="news-meta"><i class="far fa-calendar-alt"></i> April 2024 &nbsp;&bull;&nbsp; <i class="far fa-user"></i> SITHELO Team</div>
+        <a href="#" class="news-read-more" onclick="showToast('Full article coming soon!')">Read More &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonials on news page -->
+  <section class="testimonials">
+    <div class="section-header">
+      <div class="section-eyebrow">Testimonials</div>
+      <h2 class="section-title">Lives Changed, Stories Told</h2>
+      <p class="section-sub">The truest measure of our work is the voices of those whose lives have been transformed.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">I came to SITHELO broken. I left with a skill, a network and a belief in myself I hadn't felt since childhood. They don't just give you a programme &mdash; they give you a reason to keep going.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">L</div>
+          <div class="testi-info">
+            <div class="testi-name">Lungile P.</div>
+            <div class="testi-role">Women's Empowerment Participant</div>
+            <div class="testi-stars"><i class="fas fa-star" style="color:#F5A623;"></i><i class="fas fa-star" style="color:#F5A623;"></i><i class="fas fa-star" style="color:#F5A623;"></i><i class="fas fa-star" style="color:#F5A623;"></i><i class="fas fa-star" style="color:#F5A623;"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">The school drive wasn't just about stationery. For my daughter, it was the moment she realised she mattered to people outside our home. That feeling is worth everything.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">Z</div>
+          <div class="testi-info">
+            <div class="testi-name">Zanele N.</div>
+            <div class="testi-role">School Drive Recipient</div>
+            <div class="testi-stars"><i class="fas fa-star" style="color:#F5A623;"></i><i class="fas fa-star" style="color:#F5A623;"></i><i class="fas fa-star" style="color:#F5A623;"></i><i class="fas fa-star" style="color:#F5A623;"></i><i class="fas fa-star" style="color:#F5A623;"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Volunteering with SITHELO is the most meaningful thing I've done with my weekends in years. You see the direct impact in real time &mdash; in people's smiles and their growing confidence.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">B</div>
+          <div class="testi-info">
+            <div class="testi-name">Bongani M.</div>
+            <div class="testi-role">Long-term Volunteer, Durban</div>
+            <div class="testi-stars"><i class="fas fa-star" style="color:#F5A623;"></i><i class="fas fa-star" style="color:#F5A623;"></i><i class="fas fa-star" style="color:#F5A623;"></i><i class="fas fa-star" style="color:#F5A623;"></i><i class="fas fa-star" style="color:#F5A623;"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ==============================================
+     PAGE 5: CONTACT
+============================================== -->
+<div class="page" id="page-contact">
+  <div class="contact-wrapper">
+    <!-- Left info panel -->
+    <div class="contact-info">
+      <h1>Get In <span>Touch</span></h1>
+      <p class="lead">We'd love to hear from you &mdash; whether you want to volunteer, make a donation, partner with us, or simply find out more about what we do.</p>
+
+      <div class="contact-detail">
+        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+        <div class="contact-detail-text">
+          <h4>Phone / WhatsApp</h4>
+          <a href="tel:0656068168">065 606 8168</a>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+        <div class="contact-detail-text">
+          <h4>Email</h4>
+          <a href="mailto:sithelodbn@yahoo.com">sithelodbn@yahoo.com</a>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="contact-detail-text">
+          <h4>Our Address</h4>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=44+Alphen+Avenue+Montclair+Durban+South+Africa+4001" target="_blank">
+            44 Alphen Avenue, Montclair<br>Durban, South Africa, 4001<br>
+            <span style="font-size:0.78rem; color:var(--magenta-light); margin-top:4px; display:block;">&#9654; Get Directions</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="map-embed">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3459.1234567890!2d30.9156!3d-29.9234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ef7a9e8a4e8e8e8%3A0x1234567890!2s44+Alphen+Ave%2C+Montclair%2C+Durban%2C+4001!5e0!3m2!1sen!2sza!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+
+      <div style="margin-top: 32px;">
+        <p style="font-size:0.78rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--magenta-light); margin-bottom:14px;">Follow &amp; Connect</p>
+        <div class="social-row">
+          <a class="social-pill" href="https://wa.me/27656068168" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.119.554 4.107 1.523 5.83L.057 23.999l6.304-1.654A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.849 0-3.574-.498-5.057-1.365l-.362-.215-3.742.982.999-3.648-.235-.374A9.791 9.791 0 012.182 12c0-5.414 4.404-9.818 9.818-9.818 5.414 0 9.818 4.404 9.818 9.818 0 5.414-4.404 9.818-9.818 9.818z"/></svg>
+            WhatsApp
+          </a>
+          <a class="social-pill" href="https://www.facebook.com/share/1GasTbGujx/" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            Facebook
+          </a>
+          <a class="social-pill" href="https://www.instagram.com/sithelo_npo" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            Instagram
+          </a>
+          <a class="social-pill" href="https://x.com/Sithelo_Dbn" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            Twitter / X
+          </a>
+          <a class="social-pill" href="https://www.tiktok.com/@sithelodbnnpo" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+            TikTok
+          </a>
+          <a class="social-pill" href="https://youtu.be/PNd3M_VxnrU" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            YouTube
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right form panel -->
+    <div class="contact-form-side">
+      <h2>Send Us a Message</h2>
+      <p class="sub">Fill in the form below and we'll get back to you within 48 hours.</p>
+      <form class="form-grid" id="contact-form" action="https://formspree.io/f/placeholder" method="POST">
+        <div class="form-group">
+          <label for="f-name">First Name</label>
+          <input type="text" id="f-name" name="first_name" placeholder="Nomsa" required>
+        </div>
+        <div class="form-group">
+          <label for="f-surname">Last Name</label>
+          <input type="text" id="f-surname" name="last_name" placeholder="Dlamini" required>
+        </div>
+        <div class="form-group full">
+          <label for="f-email">Email Address</label>
+          <input type="email" id="f-email" name="email" placeholder="nomsa@email.com" required>
+        </div>
+        <div class="form-group full">
+          <label for="f-phone">Phone Number</label>
+          <input type="tel" id="f-phone" name="phone" placeholder="0XX XXX XXXX">
+        </div>
+        <div class="form-group full">
+          <label for="f-reason">Reason for Contact</label>
+          <select id="f-reason" name="reason" required>
+            <option value="">Select an option...</option>
+            <option>Volunteer with SITHELO</option>
+            <option>Make a Donation</option>
+            <option>Partner with Us</option>
+            <option>Join a Programme</option>
+            <option>Media / Press Enquiry</option>
+            <option>General Enquiry</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label for="f-msg">Your Message</label>
+          <textarea id="f-msg" name="message" placeholder="Tell us about yourself and how you'd like to get involved..." required></textarea>
+        </div>
+        <div class="form-group full">
+          <button type="submit" class="form-submit">Send Message <i class="fas fa-magic"></i></button>
+        </div>
+      </form>
+      <div class="form-success" id="form-success">
+        <i class="fas fa-check-circle"></i> Thank you for reaching out! We'll be in touch within 48 hours.
+      </div>
+
+      <div class="map-embed" style="margin-top:28px;">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3459.1!2d30.924!3d-29.945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ef7aa1b4b4b4b4b%3A0xabcdef1234567890!2s44+Alphen+Ave%2C+Montclair%2C+Durban%2C+4001%2C+South+Africa!5e0!3m2!1sen!2sza!4v1700000000000&q=44+Alphen+Avenue+Montclair+Durban"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=44+Alphen+Avenue+Montclair+Durban+South+Africa+4001" target="_blank" class="btn-primary" style="display:inline-block;margin-top:14px;text-align:center;">
+        <i class="fas fa-map-marker-alt"></i> Get Directions on Google Maps
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ==============================================
+     PAGE 6: VOLUNTEER
+============================================== -->
+<div class="page" id="page-volunteer">
+  <div class="contact-wrapper">
+    <!-- Left info panel -->
+    <div class="contact-info">
+      <h1>Become a <span>Volunteer</span></h1>
+      <p class="lead">Join our passionate team and directly impact the lives of women, youth, and children in Durban. Your time is the most valuable gift you can give.</p>
+
+      <div class="contact-detail" style="margin-top: 30px;">
+        <div class="contact-icon"><i class="fas fa-hands-helping"></i></div>
+        <div class="contact-detail-text">
+          <h4>Why Volunteer?</h4>
+          <p>Gain new skills, build lifelong friendships, and be part of a movement that empowers communities from the ground up.</p>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon"><i class="fas fa-calendar-check"></i></div>
+        <div class="contact-detail-text">
+          <h4>Flexible Commitment</h4>
+          <p>Whether you have a few hours a month or a few days a week, we have opportunities that fit your schedule.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right form panel -->
+    <div class="contact-form-side">
+      <h2>Volunteer Application</h2>
+      <p class="sub">Tell us a bit about yourself and how you'd like to help.</p>
+      <form class="form-grid" action="https://formspree.io/f/placeholder" method="POST">
+        <div class="form-group full">
+          <label for="v-name">Full Name</label>
+          <input type="text" id="v-name" name="name" placeholder="E.g. Nomsa Dlamini" required>
+        </div>
+        <div class="form-group">
+          <label for="v-email">Email Address</label>
+          <input type="email" id="v-email" name="email" placeholder="nomsa@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="v-phone">Phone Number</label>
+          <input type="tel" id="v-phone" name="phone" placeholder="0XX XXX XXXX" required>
+        </div>
+        <div class="form-group full">
+          <label for="v-interest">Area of Interest</label>
+          <select id="v-interest" name="interest" required>
+            <option value="">Select an area...</option>
+            <option>Event Help</option>
+            <option>Mentorship</option>
+            <option>Admin</option>
+            <option>Field Work</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label for="v-availability">Availability</label>
+          <input type="text" id="v-availability" name="availability" placeholder="E.g. Weekends, Monday mornings" required>
+        </div>
+        <div class="form-group full">
+          <label for="v-msg">Additional Information</label>
+          <textarea id="v-msg" name="message" placeholder="Tell us about any relevant skills or why you want to join us..."></textarea>
+        </div>
+        <div class="form-group full">
+          <button type="submit" class="form-submit">Submit Application <i class="fas fa-paper-plane"></i></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ==============================================
+     PAGE 7: PROGRAMMES
+============================================== -->
+<div class="page" id="page-programmes">
+  <div class="about-hero">
+    <h1>Our <span>Programmes</span></h1>
+    <p>Discover the specific initiatives we run to empower our community. From skills training to youth mentorship, find out how you can get involved.</p>
+  </div>
+
+  <div class="about-content">
+    
+    <!-- Program 1 -->
+    <div class="program-block">
+      <div class="program-icon"><i class="fas fa-venus"></i></div>
+      <div class="program-info">
+        <h2>Women Empowerment</h2>
+        <p class="program-desc">Leadership training, entrepreneurship support and advocacy that helps women claim their rightful place in society. This programme focuses on building both economic independence and personal confidence.</p>
+        <div class="program-meta">
+          <div class="meta-item"><strong>Eligibility:</strong> Women aged 18+ from Durban South</div>
+          <div class="meta-item"><strong>Schedule:</strong> Bi-weekly workshops (Saturdays)</div>
+        </div>
+        <a href="#" onclick="showPage('volunteer')" class="btn-primary">Apply or Volunteer</a>
+      </div>
+    </div>
+    
+    <!-- Program 2 -->
+    <div class="program-block">
+      <div class="program-icon"><i class="fas fa-seedling"></i></div>
+      <div class="program-info">
+        <h2>Youth Development</h2>
+        <p class="program-desc">Mentorship, life skills and opportunity pathways that equip young people to become confident leaders of tomorrow. We partner with local schools and businesses to provide career guidance.</p>
+        <div class="program-meta">
+          <div class="meta-item"><strong>Eligibility:</strong> Youth aged 14-25</div>
+          <div class="meta-item"><strong>Schedule:</strong> After-school sessions (Wed &amp; Fri)</div>
+        </div>
+        <a href="#" onclick="showPage('volunteer')" class="btn-primary">Apply or Volunteer</a>
+      </div>
+    </div>
+    
+    <!-- Program 3 -->
+    <div class="program-block">
+      <div class="program-icon"><i class="fas fa-baby"></i></div>
+      <div class="program-info">
+        <h2>Children's Welfare</h2>
+        <p class="program-desc">Safe spaces, nutritional support and holistic care that protect children's dignity, safety and potential. We provide daily meals and a secure environment for vulnerable children.</p>
+        <div class="program-meta">
+          <div class="meta-item"><strong>Eligibility:</strong> Children aged 4-13</div>
+          <div class="meta-item"><strong>Schedule:</strong> Mon-Fri, 14:00 - 17:00</div>
+        </div>
+        <a href="#" onclick="showPage('volunteer')" class="btn-primary">Apply or Volunteer</a>
+      </div>
+    </div>
+    
+    <!-- Program 4 -->
+    <div class="program-block">
+      <div class="program-icon"><i class="fas fa-home"></i></div>
+      <div class="program-info">
+        <h2>Community Engagement</h2>
+        <p class="program-desc">Neighbourhood outreach, awareness campaigns and local partnership building that creates lasting social bonds. We host monthly community dialogues and clean-up drives.</p>
+        <div class="program-meta">
+          <div class="meta-item"><strong>Eligibility:</strong> Open to all community members</div>
+          <div class="meta-item"><strong>Schedule:</strong> Last Saturday of every month</div>
+        </div>
+        <a href="#" onclick="showPage('volunteer')" class="btn-primary">Apply or Volunteer</a>
+      </div>
+    </div>
+    
+    <!-- Program 5 -->
+    <div class="program-block">
+      <div class="program-icon"><i class="fas fa-book"></i></div>
+      <div class="program-info">
+        <h2>School Drives</h2>
+        <p class="program-desc">Stationery collections, uniform donations and reading programmes ensuring no child goes without the tools to learn. Distributed twice a year ahead of school terms.</p>
+        <div class="program-meta">
+          <div class="meta-item"><strong>Eligibility:</strong> Learners from partnered schools</div>
+          <div class="meta-item"><strong>Schedule:</strong> January &amp; July distributions</div>
+        </div>
+        <a href="#" onclick="showPage('donate')" class="btn-primary">Support this Drive</a>
+      </div>
+    </div>
+    
+    <!-- Program 6 -->
+    <div class="program-block">
+      <div class="program-icon"><i class="fas fa-tools"></i></div>
+      <div class="program-info">
+        <h2>Skills &amp; Trade</h2>
+        <p class="program-desc">Vocational training in crafts, trades and digital skills &mdash; giving community members tools for sustainable livelihoods. Includes our popular 6-week sewing and digital literacy bootcamps.</p>
+        <div class="program-meta">
+          <div class="meta-item"><strong>Eligibility:</strong> Unemployed individuals aged 18+</div>
+          <div class="meta-item"><strong>Schedule:</strong> 6-week modules (Mon-Wed mornings)</div>
+        </div>
+        <a href="#" onclick="showPage('volunteer')" class="btn-primary">Apply or Volunteer</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==============================================
+     SHARED FOOTER (single instance for all pages)
+============================================== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="brand-name">SITHELO</div>
+      <div class="brand-sub">Sivusa Ithemba Lembokodo NPO</div>
+      <p>Established in 2008 in Durban, South Africa, SITHELO has been a beacon of hope for women, youth and children in our communities for over 16 years.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Quick Links</h5>
+      <ul>
+        <li><a href="#" onclick="showPage('home')">Home</a></li>
+        <li><a href="#" onclick="showPage('about')">About Us</a></li>
+        <li><a href="#" onclick="showPage('gallery')">Gallery</a></li>
+        <li><a href="#" onclick="showPage('news')">News &amp; Blog</a></li>
+        <li><a href="#" onclick="showPage('contact')">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="tel:0656068168"><i class="fas fa-phone"></i> 065 606 8168</a></li>
+        <li><a href="mailto:sithelodbn@yahoo.com"><i class="fas fa-envelope"></i> sithelodbn@yahoo.com</a></li>
+        <li><a href="https://maps.google.com/?q=44+Alphen+Avenue+Montclair+Durban" target="_blank"><i class="fas fa-map-marker-alt"></i> 44 Alphen Ave, Montclair, Durban, 4001</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Newsletter</h5>
+      <p style="font-size: 0.85rem; opacity: 0.7; margin-bottom: 12px; line-height: 1.5;">Subscribe for updates and stories of hope.</p>
+      <form class="newsletter-form" action="https://formspree.io/f/placeholder" method="POST">
+        <input type="email" name="email" placeholder="Email address" required>
+        <button type="submit" aria-label="Subscribe"><i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </div>
+  <div class="footer-credibility">
+    <div class="cred-item"><i class="fas fa-certificate"></i> Registered NPO: 123-456</div>
+    <div class="cred-item"><i class="fas fa-shield-alt"></i> Audited by XYZ Trust</div>
+    <div class="cred-item"><i class="fas fa-globe-africa"></i> Serving Durban South</div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2025 SITHELO NPO &ndash; Sivusa Ithemba Lembokodo. All rights reserved.</span>
+    <a href="mailto:sithelodbn@yahoo.com">sithelodbn@yahoo.com</a>
+  </div>
+</footer>
+
+<!-- -- FLOATING SOCIAL BUTTONS -- -->
+<div class="floating-social">
+  <a class="fsoc-btn fsoc-wa" href="https://wa.me/27656068168" target="_blank" title="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.119.554 4.107 1.523 5.83L.057 23.999l6.304-1.654A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.849 0-3.574-.498-5.057-1.365l-.362-.215-3.742.982.999-3.648-.235-.374A9.791 9.791 0 012.182 12c0-5.414 4.404-9.818 9.818-9.818 5.414 0 9.818 4.404 9.818 9.818 0 5.414-4.404 9.818-9.818 9.818z"/></svg>
+  </a>
+  <a class="fsoc-btn fsoc-fb" href="https://www.facebook.com/share/1GasTbGujx/" target="_blank" title="Facebook">
+    <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+  </a>
+  <a class="fsoc-btn fsoc-ig" href="https://www.instagram.com/sithelo_npo" target="_blank" title="Instagram">
+    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+  </a>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="/main.js"></script>
+</body>
+</html>

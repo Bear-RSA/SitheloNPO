@@ -1,0 +1,25 @@
+{
+  "name": "sithelonpo",
+  "version": "1.0.0",
+  "description": "Official website for SITHELO NPO – Sivusa Ithemba Lembokodo, empowering women, youth and children in Durban, South Africa.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "npo",
+    "sithelo",
+    "durban",
+    "women-empowerment",
+    "south-africa"
+  ],
+  "author": "SITHELO NPO",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^8.1.0"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

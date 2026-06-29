@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You — SITHELO NPO Donation</title>
+<link rel="icon" type="image/png" href="/assets/logo.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --magenta: #D9166F;
+    --magenta-dark: #A80F52;
+    --magenta-light: #F05CA0;
+    --magenta-pale: #FCE8F3;
+    --dark: #1A0A12;
+    --grey-text: #5A4050;
+    --off-white: #FDF6FA;
+    --radius: 16px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #FDF6FA 0%, #FCE8F3 40%, #FFF0F8 100%);
+    color: var(--dark);
+    padding: 40px 20px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Ambient glow */
+  body::before {
+    content: '';
+    position: absolute; top: -120px; right: -120px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(217,22,111,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: pulse 6s ease-in-out infinite;
+  }
+  body::after {
+    content: '';
+    position: absolute; bottom: -80px; left: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(217,22,111,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.08); opacity: 0.7; }
+  }
+
+  .card {
+    position: relative; z-index: 1;
+    background: white;
+    border-radius: var(--radius);
+    padding: 56px 48px;
+    max-width: 520px; width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 80px rgba(217,22,111,0.15), 0 0 0 1px rgba(217,22,111,0.06);
+    animation: slideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .icon-wrap {
+    width: 88px; height: 88px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--magenta) 0%, var(--magenta-light) 100%);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 28px;
+    box-shadow: 0 10px 40px rgba(217,22,111,0.35);
+    animation: popIn 0.5s 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+  @keyframes popIn {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+  }
+  .icon-wrap i { font-size: 2.4rem; color: white; }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900;
+    color: var(--dark); margin-bottom: 14px;
+    line-height: 1.2;
+  }
+  h1 span { color: var(--magenta); }
+
+  p {
+    font-size: 1rem; color: var(--grey-text);
+    line-height: 1.7; margin-bottom: 32px;
+    max-width: 420px; margin-left: auto; margin-right: auto;
+  }
+
+  .btn-home {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--magenta); color: white;
+    padding: 14px 32px; border-radius: 30px;
+    text-decoration: none; font-weight: 600; font-size: 0.95rem;
+    box-shadow: 0 6px 20px rgba(217,22,111,0.35);
+    transition: all 0.2s;
+    border: none; cursor: pointer;
+  }
+  .btn-home:hover { background: var(--magenta-dark); transform: translateY(-2px); }
+
+  .logo-bar {
+    position: relative; z-index: 1;
+    margin-top: 32px;
+    display: flex; align-items: center; gap: 10px;
+    opacity: 0.7;
+  }
+  .logo-bar img { height: 36px; width: 36px; border-radius: 50%; object-fit: cover; }
+  .logo-bar span {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800; font-size: 0.9rem;
+    color: var(--magenta); letter-spacing: 2px;
+  }
+
+  @media (max-width: 600px) {
+    .card { padding: 40px 28px; }
+    h1 { font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="icon-wrap">
+    <i class="fas fa-check"></i>
+  </div>
+  <h1>Thank You for Your <span>Generous</span> Donation!</h1>
+  <p>Your contribution has been received and will go directly toward empowering women, youth and children in our community. Together, we are igniting hope.</p>
+  <a href="/" class="btn-home">
+    <i class="fas fa-home"></i> Return to Home
+  </a>
+</div>
+
+<div class="logo-bar">
+  <img src="/assets/logo.png" alt="SITHELO NPO">
+  <span>SITHELO</span>
+</div>
+
+</body>
+</html>
