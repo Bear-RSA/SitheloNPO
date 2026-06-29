@@ -1,3 +1,11 @@
+// Expose functions to global scope for Vite production build compatibility
+window.showPage = showPage;
+window.toggleMenu = toggleMenu;
+window.filterGallery = filterGallery;
+window.submitForm = submitForm;
+window.showToast = showToast;
+window.prepareDonation = prepareDonation;
+
 // -- Page Navigation --
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
