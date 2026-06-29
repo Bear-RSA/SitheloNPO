@@ -40,6 +40,11 @@ const express = require('express');
 const crypto  = require('crypto');
 const https   = require('https');
 
+// Load environment variables from .env file (if not in Vercel production)
+if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
+  require('dotenv').config();
+}
+
 const app = express();
 
 // ── Parse URL-encoded POST bodies (PayFast sends application/x-www-form-urlencoded) ──
@@ -359,19 +364,24 @@ app.post('/api/payfast/notify', async (req, res) => {
 // ============================================================
 const PORT = process.env.PORT || 3001;
 
-app.listen(PORT, () => {
-  console.log(`
-  ╔══════════════════════════════════════════════╗
-  ║  SITHELO NPO — PayFast ITN Server           ║
-  ║  Running on port ${PORT}                        ║
-  ║  Environment: ${config.sandbox ? 'SANDBOX' : 'PRODUCTION'}                    ║
-  ║                                              ║
-  ║  ITN Endpoint:                               ║
-  ║  POST http://localhost:${PORT}/api/payfast/notify ║
-  ║                                              ║
-  ║  For PayFast to reach this in development,   ║
-  ║  use ngrok or localtunnel to expose port     ║
-  ║  ${PORT} and set the public URL as notify_url.  ║
-  ╚══════════════════════════════════════════════╝
-  `);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`
+    ╔══════════════════════════════════════════════╗
+    ║  SITHELO NPO — PayFast ITN Server           ║
+    ║  Running on port ${PORT}                        ║
+    ║  Environment: ${config.sandbox ? 'SANDBOX' : 'PRODUCTION'}                    ║
+    ║                                              ║
+    ║  ITN Endpoint:                               ║
+    ║  POST http://localhost:${PORT}/api/payfast/notify ║
+    ║                                              ║
+    ║  For PayFast to reach this in development,   ║
+    ║  use ngrok or localtunnel to expose port     ║
+    ║  ${PORT} and set the public URL as notify_url.  ║
+    ╚══════════════════════════════════════════════╝
+    `);
+  });
+}
+
+// Export the app for Vercel Serverless Functions
+module.exports = app;
