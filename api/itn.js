@@ -1,84 +1,46 @@
 /**
  * ============================================================
  *  SITHELO NPO — PayFast ITN (Instant Transaction Notification)
- *  Express Backend Webhook Handler
+ *  Vercel Serverless Function
  * ============================================================
  *
- *  WHAT IS ITN?
+ *  Endpoint: POST /api/itn
+ *
  *  PayFast sends a server-to-server POST request to your
  *  `notify_url` every time a payment changes status (completed,
- *  failed, cancelled, etc.). This is independent of the user's
- *  browser redirect — it's the authoritative source of truth
- *  for whether a payment actually succeeded.
+ *  failed, cancelled, etc.). This is the authoritative source
+ *  of truth for whether a payment actually succeeded.
  *
- *  WHY DO WE NEED IT?
- *  The user's browser return to success.html is NOT proof of
- *  payment. The user could bookmark the page, the redirect could
- *  fail, etc. ITN is the only reliable way to confirm payment.
+ *  SECURITY VALIDATION STEPS:
+ *  1. Validate source IP address (PayFast server IPs only)
+ *  2. Validate MD5 signature integrity
+ *  3. Validate with PayFast server (HTTPS callback)
+ *  4. Validate merchant ID matches your account
+ *  5. Process payment status (COMPLETE/FAILED/PENDING)
  *
- *  SANDBOX vs PRODUCTION:
- *  ─────────────────────────────────────────────────────────────
- *  │ Setting          │ Sandbox                  │ Production              │
- *  ├──────────────────┼──────────────────────────┼─────────────────────────┤
- *  │ Process URL      │ sandbox.payfast.co.za    │ www.payfast.co.za       │
- *  │ Merchant ID      │ 10004002                 │ Your live merchant ID   │
- *  │ Merchant Key     │ q1cd2rdny4a53            │ Your live merchant key  │
- *  │ Passphrase       │ Your sandbox passphrase  │ Your live passphrase    │
- *  │ Validate URL     │ sandbox.payfast.co.za    │ www.payfast.co.za       │
- *  ─────────────────────────────────────────────────────────────
+ *  ENVIRONMENT VARIABLES (set in Vercel dashboard):
+ *  ─────────────────────────────────────────────────
+ *  PAYFAST_MERCHANT_ID   — Your live merchant ID
+ *  PAYFAST_MERCHANT_KEY  — Your live merchant key
+ *  PAYFAST_PASSPHRASE    — Your salt passphrase (from PayFast dashboard)
+ *  PAYFAST_SANDBOX       — Set to "true" to use sandbox (omit for production)
+ *  ─────────────────────────────────────────────────
  *
- *  HOW TO RUN:
- *  1. npm install express
- *  2. node server.js
- *  3. For local testing, use ngrok/localtunnel to expose port 3001
- *     so PayFast can reach your /api/payfast/notify endpoint.
- *
- *  ============================================================
+ * ============================================================
  */
 
-const express = require('express');
-const crypto  = require('crypto');
-const https   = require('https');
-
-// Load environment variables from .env file (if not in Vercel production)
-if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
-  require('dotenv').config();
-}
-
-const app = express();
-
-// ── Parse URL-encoded POST bodies (PayFast sends application/x-www-form-urlencoded) ──
-app.use(express.urlencoded({ extended: true }));
+const crypto = require('crypto');
+const https = require('https');
+const querystring = require('querystring');
 
 // ============================================================
 //  CONFIGURATION
-//  Set these in environment variables in production.
-//  Never commit real credentials to source control.
+//  All values read from Vercel environment variables.
 // ============================================================
 const config = {
-  // Toggle between sandbox and production
-  sandbox: true,
-
-  // Sandbox credentials (replace with env vars in production)
-  merchantId:  process.env.PAYFAST_MERCHANT_ID  || '10004002',
-  merchantKey: process.env.PAYFAST_MERCHANT_KEY || 'q1cd2rdny4a53',
-
-  /**
-   * PASSPHRASE:
-   * A "salt" string you set in your PayFast dashboard under:
-   *   Settings → Integration → Security → Salt Passphrase
-   *
-   * This passphrase is appended to the signature string and
-   * must match exactly between your server and your PayFast
-   * account. It adds an extra layer of security to prevent
-   * signature forgery.
-   *
-   * For sandbox: set the passphrase in your sandbox dashboard.
-   * For production: set a DIFFERENT passphrase in your live dashboard.
-   *
-   * If you haven't set a passphrase yet, leave this as null
-   * and the signature check will still work (without passphrase).
-   */
+  sandbox: process.env.PAYFAST_SANDBOX === 'true',
+  merchantId: process.env.PAYFAST_MERCHANT_ID || '',
+  merchantKey: process.env.PAYFAST_MERCHANT_KEY || '',
   passphrase: process.env.PAYFAST_PASSPHRASE || null,
 };
 
@@ -94,8 +56,6 @@ const PAYFAST_HOST = config.sandbox
  *  PayFast will only send ITN requests from these IP ranges.
  *  Check the official docs periodically for updates:
  *  https://developers.payfast.co.za/docs#ports-ips
- *
- *  These IPs are the same for sandbox and production.
  * ============================================================
  */
 const PAYFAST_VALID_IPS = [
@@ -103,15 +63,12 @@ const PAYFAST_VALID_IPS = [
   '41.74.179.192/27',
   // Individual IPs extracted from the ranges above
   ...generateIPRange('197.97.145.144', '197.97.145.159'),
-  ...generateIPRange('41.74.179.192',  '41.74.179.223'),
-  // Sandbox may also send from:
-  '127.0.0.1', // localhost (for local testing only — remove in production)
+  ...generateIPRange('41.74.179.192', '41.74.179.223'),
 ];
 
 /**
  * Helper: generate a range of IPs between start and end.
- * This is a simplified version — in production, use a proper
- * CIDR library like 'ip-range-check' or 'netmask'.
+ * Simplified — covers the last octet range only.
  */
 function generateIPRange(start, end) {
   const ips = [];
@@ -188,7 +145,7 @@ function validateSignature(postData, passphrase) {
 }
 
 // ============================================================
-//  STEP 3: VALIDATE WITH PAYFAST SERVER (Optional but recommended)
+//  STEP 3: VALIDATE WITH PAYFAST SERVER
 // ============================================================
 /**
  * Makes an HTTPS POST back to PayFast's validation endpoint
@@ -212,8 +169,8 @@ function validateWithPayFast(postData) {
       path: '/eng/query/validate',
       method: 'POST',
       headers: {
-        'Content-Type':   'application/x-www-form-urlencoded',
-        'Content-Length':  Buffer.byteLength(postDataString),
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Length': Buffer.byteLength(postDataString),
       },
     };
 
@@ -238,49 +195,66 @@ function validateWithPayFast(postData) {
 }
 
 // ============================================================
-//  ITN WEBHOOK ENDPOINT
+//  HELPER: Parse URL-encoded body from raw request
 // ============================================================
 /**
- * POST /api/payfast/notify
+ * Vercel Serverless Functions don't include Express middleware,
+ * so we manually collect and parse the request body.
+ */
+function parseBody(req) {
+  return new Promise((resolve, reject) => {
+    // If Vercel has already parsed the body (depends on config)
+    if (req.body && typeof req.body === 'object' && Object.keys(req.body).length > 0) {
+      return resolve(req.body);
+    }
+
+    let data = '';
+    req.on('data', (chunk) => data += chunk);
+    req.on('end', () => {
+      try {
+        resolve(querystring.parse(data));
+      } catch (err) {
+        reject(err);
+      }
+    });
+    req.on('error', reject);
+  });
+}
+
+// ============================================================
+//  VERCEL SERVERLESS FUNCTION HANDLER
+// ============================================================
+/**
+ * POST /api/itn
  *
  * This is the endpoint you set as `notify_url` in your payment
  * form. PayFast will POST transaction data here every time a
  * payment status changes.
- *
- * PayFast POST data includes these key fields:
- * ─────────────────────────────────────────────
- * │ Field              │ Description                        │
- * ├────────────────────┼────────────────────────────────────┤
- * │ m_payment_id       │ Your unique payment ID (if set)    │
- * │ pf_payment_id      │ PayFast's unique transaction ID    │
- * │ payment_status     │ COMPLETE, FAILED, PENDING          │
- * │ item_name          │ Item name from the form            │
- * │ item_description   │ Item description from the form     │
- * │ amount_gross       │ Total amount charged (in ZAR)      │
- * │ amount_fee         │ PayFast's fee                      │
- * │ amount_net         │ Net amount you receive             │
- * │ name_first         │ Donor's first name                 │
- * │ email_address      │ Donor's email address              │
- * │ merchant_id        │ Your merchant ID                   │
- * │ signature          │ MD5 signature for verification     │
- * ─────────────────────────────────────────────
  */
-app.post('/api/payfast/notify', async (req, res) => {
+module.exports = async function handler(req, res) {
+  // Only accept POST requests
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed. Use POST.' });
+  }
+
   console.log('\n══════════════════════════════════════');
   console.log('[PayFast ITN] Notification received');
   console.log('══════════════════════════════════════');
 
-  const postData = req.body;
+  // Parse the URL-encoded POST body
+  const postData = await parseBody(req);
 
   // Log received data (mask sensitive fields in production)
   console.log('[PayFast ITN] Transaction ID:', postData.pf_payment_id);
   console.log('[PayFast ITN] Payment Status:', postData.payment_status);
-  console.log('[PayFast ITN] Amount Gross:',   postData.amount_gross);
-  console.log('[PayFast ITN] Item:',           postData.item_name);
-  console.log('[PayFast ITN] Donor:',          postData.name_first, '-', postData.email_address);
+  console.log('[PayFast ITN] Amount Gross:', postData.amount_gross);
+  console.log('[PayFast ITN] Item:', postData.item_name);
+  console.log('[PayFast ITN] Donor:', postData.name_first, '-', postData.email_address);
 
   // ── STEP 1: Validate IP ──
-  const sourceIP = req.ip || req.connection.remoteAddress;
+  const sourceIP = req.headers['x-forwarded-for']
+    ? req.headers['x-forwarded-for'].split(',')[0].trim()
+    : req.socket?.remoteAddress || '';
   console.log('[PayFast ITN] Source IP:', sourceIP);
 
   if (!isValidPayFastIP(sourceIP)) {
@@ -357,31 +331,4 @@ app.post('/api/payfast/notify', async (req, res) => {
   // If you don't respond 200, PayFast will keep retrying
   // the notification (up to 5 times over several hours).
   res.status(200).send('OK');
-});
-
-// ============================================================
-//  START SERVER
-// ============================================================
-const PORT = process.env.PORT || 3001;
-
-if (!process.env.VERCEL) {
-  app.listen(PORT, () => {
-    console.log(`
-    ╔══════════════════════════════════════════════╗
-    ║  SITHELO NPO — PayFast ITN Server           ║
-    ║  Running on port ${PORT}                        ║
-    ║  Environment: ${config.sandbox ? 'SANDBOX' : 'PRODUCTION'}                    ║
-    ║                                              ║
-    ║  ITN Endpoint:                               ║
-    ║  POST http://localhost:${PORT}/api/payfast/notify ║
-    ║                                              ║
-    ║  For PayFast to reach this in development,   ║
-    ║  use ngrok or localtunnel to expose port     ║
-    ║  ${PORT} and set the public URL as notify_url.  ║
-    ╚══════════════════════════════════════════════╝
-    `);
-  });
-}
-
-// Export the app for Vercel Serverless Functions
-module.exports = app;
+};

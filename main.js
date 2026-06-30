@@ -168,7 +168,7 @@ function initDonationForm() {
   if (cancelUrl) cancelUrl.value = origin + '/cancel.html';
   // ITN notify URL should point to your server (Express backend)
   // For local dev, PayFast can't reach localhost — use a tunnel or leave blank
-  if (notifyUrl) notifyUrl.value = origin + '/api/payfast/notify';
+  if (notifyUrl) notifyUrl.value = origin + '/api/itn';
 
   // -- Radio button selection handling --
   labels.forEach(label => {
