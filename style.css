@@ -10,7 +10,7 @@
     --white: #FFFFFF;
     --off-white: #FDF6FA;
     --dark: #1A0A12;
-    --grey-text: #5A4050;
+    --grey-text: #45303d; /* Darkened for WCAG AA compliance */
     --radius: 16px;
     --shadow: 0 8px 40px rgba(217,22,111,0.13);
     --shadow-sm: 0 2px 12px rgba(217,22,111,0.09);
@@ -25,6 +25,22 @@
     background: var(--white);
     color: var(--dark);
     overflow-x: hidden;
+  }
+
+  .skip-nav {
+    position: absolute;
+    left: -9999px;
+    z-index: 9999;
+    padding: 1rem;
+    background-color: var(--magenta);
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+  }
+  .skip-nav:focus {
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
   }
 
   /* -- NAV -- */
