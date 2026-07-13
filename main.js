@@ -28,22 +28,22 @@ function toggleMenu() {
 
 // -- Gallery Filter --
 const galleryItems = [
-  { cat: 'community', url: '/assets/gallery/Community%20Engagement/IMG-20260703-WA0006.jpg', label: 'Community Engagement' },
-  { cat: 'community', url: '/assets/gallery/Community%20Engagement/IMG-20260703-WA0007.jpg', label: 'Community Engagement' },
-  { cat: 'community', url: '/assets/gallery/Community%20Engagement/IMG-20260703-WA0012.jpg', label: 'Community Engagement' },
-  { cat: 'community', url: '/assets/gallery/Community%20Engagement/IMG-20260703-WA0014.jpg', label: 'Community Engagement' },
-  { cat: 'community', url: '/assets/gallery/Community%20Engagement/IMG-20260703-WA0018.jpg', label: 'Community Engagement' },
-  { cat: 'community', url: '/assets/gallery/Community%20Engagement/IMG-20260703-WA0023.jpg', label: 'Community Engagement' },
-  { cat: 'women', url: '/assets/gallery/Women%27s%20Month%20Dialogue/IMG-20260703-WA0008.jpg', label: "Women's Month Dialogue" },
-  { cat: 'women', url: '/assets/gallery/Women%27s%20Month%20Dialogue/IMG-20260703-WA0011.jpg', label: "Women's Month Dialogue" },
-  { cat: 'women', url: '/assets/gallery/Women%27s%20Month%20Dialogue/IMG-20260703-WA0013.jpg', label: "Women's Month Dialogue" },
-  { cat: 'women', url: '/assets/gallery/Women%27s%20Month%20Dialogue/IMG-20260703-WA0016.jpg', label: "Women's Month Dialogue" },
-  { cat: 'youth', url: '/assets/gallery/Youth%20Development/IMG-20260703-WA0017.jpg', label: 'Youth Development' },
-  { cat: 'youth', url: '/assets/gallery/Youth%20Development/IMG-20260703-WA0019.jpg', label: 'Youth Development' },
-  { cat: 'youth', url: '/assets/gallery/Youth%20Development/IMG-20260703-WA0020.jpg', label: 'Youth Development' },
-  { cat: 'youth', url: '/assets/gallery/Youth%20Development/IMG-20260703-WA0021.jpg', label: 'Youth Development' },
-  { cat: 'general', url: '/assets/gallery/General/IMG-20260703-WA0022.jpg', label: 'General' },
-  { cat: 'general', url: '/assets/gallery/General/IMG-20260703-WA0024.jpg', label: 'General' }
+  { cat: 'community', url: '/assets/gallery/community-engagement/IMG-20260703-WA0006.jpg', label: 'Community Engagement' },
+  { cat: 'community', url: '/assets/gallery/community-engagement/IMG-20260703-WA0007.jpg', label: 'Community Engagement' },
+  { cat: 'community', url: '/assets/gallery/community-engagement/IMG-20260703-WA0012.jpg', label: 'Community Engagement' },
+  { cat: 'community', url: '/assets/gallery/community-engagement/IMG-20260703-WA0014.jpg', label: 'Community Engagement' },
+  { cat: 'community', url: '/assets/gallery/community-engagement/IMG-20260703-WA0018.jpg', label: 'Community Engagement' },
+  { cat: 'community', url: '/assets/gallery/community-engagement/IMG-20260703-WA0023.jpg', label: 'Community Engagement' },
+  { cat: 'women', url: '/assets/gallery/womens-month-dialogue/IMG-20260703-WA0008.jpg', label: "Women's Month Dialogue" },
+  { cat: 'women', url: '/assets/gallery/womens-month-dialogue/IMG-20260703-WA0011.jpg', label: "Women's Month Dialogue" },
+  { cat: 'women', url: '/assets/gallery/womens-month-dialogue/IMG-20260703-WA0013.jpg', label: "Women's Month Dialogue" },
+  { cat: 'women', url: '/assets/gallery/womens-month-dialogue/IMG-20260703-WA0016.jpg', label: "Women's Month Dialogue" },
+  { cat: 'youth', url: '/assets/gallery/youth-development/IMG-20260703-WA0017.jpg', label: 'Youth Development' },
+  { cat: 'youth', url: '/assets/gallery/youth-development/IMG-20260703-WA0019.jpg', label: 'Youth Development' },
+  { cat: 'youth', url: '/assets/gallery/youth-development/IMG-20260703-WA0020.jpg', label: 'Youth Development' },
+  { cat: 'youth', url: '/assets/gallery/youth-development/IMG-20260703-WA0021.jpg', label: 'Youth Development' },
+  { cat: 'general', url: '/assets/gallery/general/IMG-20260703-WA0022.jpg', label: 'General' },
+  { cat: 'general', url: '/assets/gallery/general/IMG-20260703-WA0024.jpg', label: 'General' }
 ];
 
 function renderGallery(filter) {
