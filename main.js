@@ -26,15 +26,22 @@ function toggleMenu() {
 
 // -- Gallery Filter --
 const galleryItems = [
-  { cat: 'school',    icon: '<i class="fas fa-graduation-cap"></i>', label: 'Back-to-School Drive',       sub: 'Montclair Primary, 2025' },
-  { cat: 'skills',   icon: '<i class="fas fa-cut"></i>', label: 'Sewing & Crafts Training',   sub: 'Skills Programme, 2024' },
-  { cat: 'women',    icon: '<i class="fas fa-female"></i>', label: "Women's Month Dialogue",      sub: 'August 2024' },
-  { cat: 'youth',    icon: '<i class="fas fa-seedling"></i>', label: 'Youth Mentorship Session',   sub: 'Durban South, 2024' },
-  { cat: 'community',icon: '<i class="fas fa-city"></i>', label: 'Community Outreach Day',     sub: 'Montclair, 2024' },
-  { cat: 'school',   icon: '<i class="fas fa-book"></i>', label: 'Stationery Collection',       sub: 'School Drive 2024' },
-  { cat: 'skills',   icon: '<i class="fas fa-tools"></i>', label: 'Vocational Trade Workshop',  sub: 'Skills Centre, 2024' },
-  { cat: 'women',    icon: '<i class="fas fa-heart"></i>', label: 'Leadership Training',         sub: "Women's Programme" },
-  { cat: 'community',icon: '<i class="fas fa-shoe-prints"></i>', label: 'Winter Warmth &mdash; Shoe Drive', sub: 'June 2024' },
+  { cat: 'community', url: '/assets/gallery/Community%20Engagement/IMG-20260703-WA0006.jpg', label: 'Community Engagement' },
+  { cat: 'community', url: '/assets/gallery/Community%20Engagement/IMG-20260703-WA0007.jpg', label: 'Community Engagement' },
+  { cat: 'community', url: '/assets/gallery/Community%20Engagement/IMG-20260703-WA0012.jpg', label: 'Community Engagement' },
+  { cat: 'community', url: '/assets/gallery/Community%20Engagement/IMG-20260703-WA0014.jpg', label: 'Community Engagement' },
+  { cat: 'community', url: '/assets/gallery/Community%20Engagement/IMG-20260703-WA0018.jpg', label: 'Community Engagement' },
+  { cat: 'community', url: '/assets/gallery/Community%20Engagement/IMG-20260703-WA0023.jpg', label: 'Community Engagement' },
+  { cat: 'women', url: '/assets/gallery/Women%27s%20Month%20Dialogue/IMG-20260703-WA0008.jpg', label: "Women's Month Dialogue" },
+  { cat: 'women', url: '/assets/gallery/Women%27s%20Month%20Dialogue/IMG-20260703-WA0011.jpg', label: "Women's Month Dialogue" },
+  { cat: 'women', url: '/assets/gallery/Women%27s%20Month%20Dialogue/IMG-20260703-WA0013.jpg', label: "Women's Month Dialogue" },
+  { cat: 'women', url: '/assets/gallery/Women%27s%20Month%20Dialogue/IMG-20260703-WA0016.jpg', label: "Women's Month Dialogue" },
+  { cat: 'youth', url: '/assets/gallery/Youth%20Development/IMG-20260703-WA0017.jpg', label: 'Youth Development' },
+  { cat: 'youth', url: '/assets/gallery/Youth%20Development/IMG-20260703-WA0019.jpg', label: 'Youth Development' },
+  { cat: 'youth', url: '/assets/gallery/Youth%20Development/IMG-20260703-WA0020.jpg', label: 'Youth Development' },
+  { cat: 'youth', url: '/assets/gallery/Youth%20Development/IMG-20260703-WA0021.jpg', label: 'Youth Development' },
+  { cat: 'general', url: '/assets/gallery/General/IMG-20260703-WA0022.jpg', label: 'General' },
+  { cat: 'general', url: '/assets/gallery/General/IMG-20260703-WA0024.jpg', label: 'General' }
 ];
 
 function renderGallery(filter) {
@@ -43,11 +50,7 @@ function renderGallery(filter) {
   const filtered = filter === 'all' ? galleryItems : galleryItems.filter(i => i.cat === filter);
   grid.innerHTML = filtered.map(item => `
     <div class="gallery-item" data-cat="${item.cat}">
-      <div class="gallery-item-inner">
-        <div class="gallery-placeholder-icon">${item.icon}</div>
-        <div class="gallery-placeholder-label">${item.label}</div>
-        <div class="gallery-placeholder-sub">${item.sub}</div>
-      </div>
+      <img src="${item.url}" alt="${item.label}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" />
       <div class="gallery-overlay"><span class="gallery-overlay-text">${item.label}</span></div>
     </div>
   `).join('');
@@ -258,9 +261,52 @@ function animateValue(obj, start, end, duration) {
   window.requestAnimationFrame(step);
 }
 
+// -- Newsletter Form --
+function initNewsletterForm() {
+  const form = document.getElementById('newsletter-form');
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const emailInput = form.querySelector('input[name="email"]');
+    const email = emailInput?.value.trim();
+    if (!email) return;
+
+    // Show loading state (optional, just disable button)
+    const btn = form.querySelector('button');
+    if (btn) {
+      btn.disabled = true;
+      btn.style.opacity = '0.5';
+    }
+
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+      
+      if (response.ok) {
+        showToast('Thank you for subscribing!');
+        form.reset();
+      } else {
+        showToast('Something went wrong. Please try again later.');
+      }
+    } catch (err) {
+      showToast('Network error. Please try again.');
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.style.opacity = '1';
+      }
+    }
+  });
+}
+
 // -- Init --
 document.addEventListener('DOMContentLoaded', () => {
   renderGallery('all');
   initDonationForm();
   initImpactStats();
+  initNewsletterForm();
 });

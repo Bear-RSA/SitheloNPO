@@ -313,8 +313,9 @@
   }
   .about-text ul li::before { content: '\2726'; color: var(--magenta); font-size: 0.7rem; margin-top: 5px; flex-shrink: 0; }
 
-  .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 60px; }
+  .values-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 60px; }
   .value-card {
+    flex: 1 1 200px; max-width: 320px;
     border: 2px solid var(--magenta-pale); border-radius: var(--radius);
     padding: 28px 20px; text-align: center;
     transition: border-color 0.3s, box-shadow 0.3s;
