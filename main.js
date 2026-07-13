@@ -28,7 +28,6 @@ function toggleMenu() {
 
 // -- Gallery Filter --
 const galleryItems = [
-<<<<<<< HEAD
   { cat: 'community', url: '/assets/gallery/Community%20Engagement/IMG-20260703-WA0006.jpg', label: 'Community Engagement' },
   { cat: 'community', url: '/assets/gallery/Community%20Engagement/IMG-20260703-WA0007.jpg', label: 'Community Engagement' },
   { cat: 'community', url: '/assets/gallery/Community%20Engagement/IMG-20260703-WA0012.jpg', label: 'Community Engagement' },
@@ -45,17 +44,6 @@ const galleryItems = [
   { cat: 'youth', url: '/assets/gallery/Youth%20Development/IMG-20260703-WA0021.jpg', label: 'Youth Development' },
   { cat: 'general', url: '/assets/gallery/General/IMG-20260703-WA0022.jpg', label: 'General' },
   { cat: 'general', url: '/assets/gallery/General/IMG-20260703-WA0024.jpg', label: 'General' }
-=======
-  { cat: 'school',    img: 'https://via.placeholder.com/600x400?text=School+Drive', label: 'Back-to-School Drive',       sub: 'Montclair Primary, 2025' },
-  { cat: 'skills',   img: 'https://via.placeholder.com/600x400?text=Skills+Training', label: 'Sewing & Crafts Training',   sub: 'Skills Programme, 2024' },
-  { cat: 'women',    img: 'https://via.placeholder.com/600x400?text=Women%27s+Month', label: "Women's Month Dialogue",      sub: 'August 2024' },
-  { cat: 'youth',    img: 'https://via.placeholder.com/600x400?text=Youth+Mentorship', label: 'Youth Mentorship Session',   sub: 'Durban South, 2024' },
-  { cat: 'community',img: 'https://via.placeholder.com/600x400?text=Community+Outreach', label: 'Community Outreach Day',     sub: 'Montclair, 2024' },
-  { cat: 'school',   img: 'https://via.placeholder.com/600x400?text=Stationery+Drive', label: 'Stationery Collection',       sub: 'School Drive 2024' },
-  { cat: 'skills',   img: 'https://via.placeholder.com/600x400?text=Trade+Workshop', label: 'Vocational Trade Workshop',  sub: 'Skills Centre, 2024' },
-  { cat: 'women',    img: 'https://via.placeholder.com/600x400?text=Leadership+Training', label: 'Leadership Training',         sub: "Women's Programme" },
-  { cat: 'community',img: 'https://via.placeholder.com/600x400?text=Shoe+Drive', label: 'Winter Warmth &mdash; Shoe Drive', sub: 'June 2024' },
->>>>>>> c27cdbf4deac82b253288454a120bfb6f2e0a69d
 ];
 
 function renderGallery(filter) {
@@ -64,11 +52,7 @@ function renderGallery(filter) {
   const filtered = filter === 'all' ? galleryItems : galleryItems.filter(i => i.cat === filter);
   grid.innerHTML = filtered.map(item => `
     <div class="gallery-item" data-cat="${item.cat}">
-<<<<<<< HEAD
       <img src="${item.url}" alt="${item.label}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" />
-=======
-      <img src="${item.img}" alt="${item.label}" style="width: 100%; height: 100%; object-fit: cover; display: block;">
->>>>>>> c27cdbf4deac82b253288454a120bfb6f2e0a69d
       <div class="gallery-overlay"><span class="gallery-overlay-text">${item.label}</span></div>
     </div>
   `).join('');
@@ -274,12 +258,9 @@ function initNewsletterForm() {
 document.addEventListener('DOMContentLoaded', () => {
   renderGallery('all');
   initImpactStats();
-<<<<<<< HEAD
   initNewsletterForm();
-=======
-  initContactForm();
-  initVolunteerForm();
->>>>>>> c27cdbf4deac82b253288454a120bfb6f2e0a69d
+  if (typeof initContactForm === 'function') initContactForm();
+  if (typeof initVolunteerForm === 'function') initVolunteerForm();
 });
 
 
