@@ -4,12 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SITHELO NPO – Sivusa Ithemba Lembokodo</title>
+<meta name="description" content="SITHELO NPO uplifts women, youth and children in Durban through skills training, education drives, and mentorship programmes.">
+<meta property="og:title" content="SITHELO NPO – Sivusa Ithemba Lembokodo">
+<meta property="og:description" content="Empowering women, youth and children in Durban through community action and skills development.">
+<meta property="og:image" content="https://sithelonpo.co.za/assets/logo.png">
+<meta property="og:url" content="https://sithelonpo.co.za/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SITHELO NPO – Sivusa Ithemba Lembokodo">
+<meta name="twitter:description" content="Empowering women, youth and children in Durban through community action and skills development.">
+<meta name="twitter:image" content="https://sithelonpo.co.za/assets/logo.png">
 <link rel="icon" type="image/png" href="/assets/logo.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+<a href="#page-home" class="skip-nav">Skip to main content</a>
 
 <!-- -- NAVIGATION -- -->
 <nav id="main-nav">
@@ -27,7 +38,7 @@
     <li><a href="#" onclick="showPage('news')">News &amp; Blog</a></li>
     <li><a href="#" onclick="showPage('volunteer')">Volunteer</a></li>
     <li><a href="#" onclick="showPage('contact')">Contact</a></li>
-    <li><a href="#" onclick="showPage('donate')" class="donate-btn">Get Involved</a></li>
+
   </ul>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -42,7 +53,7 @@
   <a href="#" onclick="showPage('news');toggleMenu()"><i class="fas fa-newspaper"></i> News &amp; Blog</a>
   <a href="#" onclick="showPage('volunteer');toggleMenu()"><i class="fas fa-hands-helping"></i> Volunteer</a>
   <a href="#" onclick="showPage('contact');toggleMenu()"><i class="fas fa-phone"></i> Contact</a>
-  <a href="#" class="donate-btn" onclick="showPage('donate');toggleMenu()"><i class="fas fa-envelope"></i> Get Involved</a>
+
 </div>
 
 <!-- ==============================================
@@ -194,111 +205,7 @@
 
 </div>
 
-<!-- ==============================================
-     PAGE: DONATE (PayFast Sandbox Integration)
-============================================== -->
-<div class="page" id="page-donate">
-  <div class="about-hero">
-    <h1>Make a <span>Donation</span></h1>
-    <p>Your contribution directly supports our skills training, school drives, and community empowerment programmes. Help us ignite hope today.</p>
-  </div>
 
-  <div class="about-content">
-    <div class="section-header">
-      <div class="section-eyebrow">Support Our Work</div>
-      <h2 class="section-title">Choose Your Impact</h2>
-      <p class="section-sub">Every rand you contribute goes directly to empowering women, youth and children in Durban. Select an amount below to begin your secure donation.</p>
-    </div>
-    
-    <div style="max-width: 560px; margin: 0 auto; background: var(--off-white); padding: 44px; border-radius: var(--radius); box-shadow: var(--shadow-sm);">
-      <!--
-        ============================================================
-        PayFast Sandbox Payment Form
-        ============================================================
-        ACTION:  https://sandbox.payfast.co.za/eng/process  (SANDBOX)
-        LIVE:    https://www.payfast.co.za/eng/process       (PRODUCTION)
-
-        Replace merchant_id and merchant_key with your live
-        credentials when going to production. Also update the
-        return, cancel, and notify URLs to your production domain.
-        ============================================================
-      -->
-      <form
-        id="donate-form"
-        action="https://www.payfast.co.za/eng/process"
-        method="POST"
-        onsubmit="return prepareDonation()"
-        style="display: flex; flex-direction: column; gap: 20px;"
-      >
-        <!-- ── PayFast Required Hidden Fields ── -->
-        <!-- Sandbox Merchant ID (replace with your live ID for production) -->
-        <input type="hidden" name="merchant_id" value="10004002">
-        <!-- Sandbox Merchant Key (replace with your live key for production) -->
-        <input type="hidden" name="merchant_key" value="q1cd2rdny4a53">
-
-        <!-- Return URLs — where PayFast redirects the user after payment -->
-        <input type="hidden" name="return_url" id="pf-return-url" value="">
-        <input type="hidden" name="cancel_url" id="pf-cancel-url" value="">
-        <!-- ITN (Instant Transaction Notification) — server-to-server webhook -->
-        <input type="hidden" name="notify_url" id="pf-notify-url" value="">
-
-        <!-- Payment details -->
-        <input type="hidden" name="item_name" value="SITHELO NPO Donation">
-        <input type="hidden" name="item_description" value="Supporting women, youth and children empowerment programmes in Durban">
-        <!-- This hidden field is dynamically updated by main.js before submit -->
-        <input type="hidden" name="amount" id="pf-amount" value="250.00">
-
-        <!-- Donor information (mapped to PayFast field names) -->
-        <input type="hidden" name="name_first" id="pf-name-first" value="">
-        <input type="hidden" name="email_address" id="pf-email-address" value="">
-
-        <!-- ── Visible Form UI ── -->
-        <div class="form-group full">
-          <label>Select Amount</label>
-          <div id="donate-amount-options" style="display: flex; gap: 16px; margin-top: 8px; width: 100%;">
-            <label class="donate-amount-label" data-amount="100" style="flex: 1; display: block; width: 100%; background: white; border: 2px solid var(--silver-light); padding: 14px 0; border-radius: 10px; text-align: center; cursor: pointer; transition: all 0.2s;">
-              <input type="radio" name="donate_amount" value="100" style="display: none;">
-              <span style="font-size: 1.2rem; font-weight: 700; color: var(--magenta);">R100</span>
-            </label>
-            <label class="donate-amount-label active" data-amount="250" style="flex: 1; display: block; width: 100%; background: white; border: 2px solid var(--magenta); padding: 14px 0; border-radius: 10px; text-align: center; cursor: pointer; transition: all 0.2s;">
-              <input type="radio" name="donate_amount" value="250" checked style="display: none;">
-              <span style="font-size: 1.2rem; font-weight: 700; color: var(--magenta);">R250</span>
-            </label>
-            <label class="donate-amount-label" data-amount="500" style="flex: 1; display: block; width: 100%; background: white; border: 2px solid var(--silver-light); padding: 14px 0; border-radius: 10px; text-align: center; cursor: pointer; transition: all 0.2s;">
-              <input type="radio" name="donate_amount" value="500" style="display: none;">
-              <span style="font-size: 1.2rem; font-weight: 700; color: var(--magenta);">R500</span>
-            </label>
-          </div>
-        </div>
-        <div class="form-group full">
-          <label for="d-custom">Or Custom Amount (R)</label>
-          <input type="number" id="d-custom" min="10" step="0.01" placeholder="e.g. 1000">
-        </div>
-        <div class="form-group full">
-          <label for="d-name">Full Name</label>
-          <input type="text" id="d-name" placeholder="Your Name" required>
-        </div>
-        <div class="form-group full">
-          <label for="d-email">Email Address</label>
-          <input type="email" id="d-email" placeholder="Your Email" required>
-        </div>
-
-        <!-- Security badge -->
-        <div style="display: flex; align-items: center; gap: 10px; padding: 14px 16px; background: rgba(217,22,111,0.05); border-radius: 10px; border: 1px solid var(--magenta-pale);">
-          <i class="fas fa-lock" style="color: var(--magenta); font-size: 1.1rem;"></i>
-          <span style="font-size: 0.82rem; color: var(--grey-text); line-height: 1.4;">Your payment is processed securely via <strong style="color: var(--dark);">PayFast</strong>. We never store your banking details.</span>
-        </div>
-
-        <button type="submit" id="donate-submit-btn" class="form-submit">
-          <i class="fas fa-heart" style="margin-right: 6px;"></i> Donate Now — Secure Checkout
-        </button>
-      </form>
-    </div>
-
-
-  </div>
-
-</div>
 <!-- ==============================================
      PAGE 2: ABOUT
 ============================================== -->
@@ -547,7 +454,7 @@
         <div class="contact-icon"><i class="fas fa-envelope"></i></div>
         <div class="contact-detail-text">
           <h4>Email</h4>
-          <a href="mailto:sithelodbn@yahoo.com">sithelodbn@yahoo.com</a>
+          <a href="mailto:info@sithelonpo.co.za">info@sithelonpo.co.za</a>
         </div>
       </div>
       <div class="contact-detail">
@@ -562,7 +469,11 @@
       </div>
 
       <div class="map-embed">
+<<<<<<< HEAD
         <iframe src="https://maps.google.com/maps?q=65+Victoria+str,+Dundee,+3000&t=&z=14&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+=======
+        <iframe src="https://maps.google.com/maps?q=44+Alphen+Ave,+Montclair,+Durban,+4001,+South+Africa&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+>>>>>>> c27cdbf4deac82b253288454a120bfb6f2e0a69d
       </div>
 
       <div style="margin-top: 32px;">
@@ -600,7 +511,7 @@
     <div class="contact-form-side">
       <h2>Send Us a Message</h2>
       <p class="sub">Fill in the form below and we'll get back to you within 48 hours.</p>
-      <form class="form-grid" id="contact-form" action="https://formspree.io/f/placeholder" method="POST">
+      <form class="form-grid" id="contact-form">
         <div class="form-group">
           <label for="f-name">First Name</label>
           <input type="text" id="f-name" name="first_name" placeholder="Nomsa" required>
@@ -642,10 +553,14 @@
       </div>
 
       <div class="map-embed" style="margin-top:28px;">
+<<<<<<< HEAD
         <iframe
           src="https://maps.google.com/maps?q=65+Victoria+str,+Dundee,+3000&t=&z=14&ie=UTF8&iwloc=&output=embed"
           allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
         </iframe>
+=======
+        <iframe src="https://maps.google.com/maps?q=44+Alphen+Ave,+Montclair,+Durban,+4001,+South+Africa&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+>>>>>>> c27cdbf4deac82b253288454a120bfb6f2e0a69d
       </div>
       <a href="https://www.google.com/maps/dir/?api=1&destination=65+Victoria+str+Dundee+South+Africa+3000" target="_blank" class="btn-primary" style="display:inline-block;margin-top:14px;text-align:center;">
         <i class="fas fa-map-marker-alt"></i> Get Directions on Google Maps
@@ -685,7 +600,7 @@
     <div class="contact-form-side">
       <h2>Volunteer Application</h2>
       <p class="sub">Tell us a bit about yourself and how you'd like to help.</p>
-      <form class="form-grid" action="https://formspree.io/f/placeholder" method="POST">
+      <form class="form-grid" id="volunteer-form">
         <div class="form-group full">
           <label for="v-name">Full Name</label>
           <input type="text" id="v-name" name="name" placeholder="E.g. Nomsa Dlamini" required>
@@ -801,7 +716,7 @@
           <div class="meta-item"><strong>Eligibility:</strong> Learners from partnered schools</div>
           <div class="meta-item"><strong>Schedule:</strong> January &amp; July distributions</div>
         </div>
-        <a href="#" onclick="showPage('donate')" class="btn-primary">Support this Drive</a>
+        <a href="#" onclick="showPage('contact')" class="btn-primary">Support this Drive</a>
       </div>
     </div>
     
@@ -823,6 +738,63 @@
 </div>
 
 <!-- ==============================================
+     PAGE 8: PRIVACY POLICY
+============================================== -->
+<div class="page" id="page-privacy">
+  <div class="about-hero">
+    <h1>Privacy <span>Policy</span></h1>
+    <p>How SITHELO NPO collects, uses, and protects your data.</p>
+  </div>
+  <div class="about-content" style="max-width: 800px; margin: 0 auto;">
+    <div class="about-text" style="margin-bottom: 30px;">
+      <h2>Introduction</h2>
+      <p>At SITHELO NPO, we are committed to protecting your privacy. This Privacy Policy outlines how we collect, use, and safeguard the personal information you provide to us, particularly through our Contact and Volunteer forms.</p>
+    </div>
+    <div class="about-text" style="margin-bottom: 30px;">
+      <h2>Information We Collect</h2>
+      <p>When you interact with our forms, we may collect the following personal information:</p>
+      <ul style="margin-left: 20px;">
+        <li><strong>Name and Surname:</strong> To identify and address you personally.</li>
+        <li><strong>Email Address:</strong> To respond to your inquiries and communicate updates.</li>
+        <li><strong>Phone Number:</strong> To contact you regarding volunteer opportunities or urgent matters.</li>
+      </ul>
+    </div>
+    <div class="about-text" style="margin-bottom: 30px;">
+      <h2>How We Use Your Information</h2>
+      <p>Your information is used strictly for fulfilling your requests and keeping you engaged with our mission. We use it to:</p>
+      <ul style="margin-left: 20px;">
+        <li>Process volunteer applications and coordinate activities.</li>
+        <li>Respond to general inquiries, partnership proposals, and support messages.</li>
+        <li>Send important updates related to our programmes and community initiatives.</li>
+      </ul>
+    </div>
+    <div class="about-text" style="margin-bottom: 30px;">
+      <h2>Data Security</h2>
+      <p>We implement robust security measures to ensure that your personal information is kept safe. Access to your data is restricted to authorized SITHELO NPO personnel only, and we adhere to strict confidentiality protocols.</p>
+    </div>
+    <div class="about-text" style="margin-bottom: 30px;">
+      <h2>Third-Party Services</h2>
+      <p><strong>We will never sell, rent, or trade your personal data.</strong> Your information is only shared with trusted third-party services that directly support our operations (such as our email delivery system), and these providers are bound by strict privacy and data protection agreements.</p>
+    </div>
+    <div class="about-text">
+      <h2>Contact Us</h2>
+      <p>If you have any questions or concerns regarding this Privacy Policy or your data, please contact us at <a href="mailto:info@sithelonpo.co.za">info@sithelonpo.co.za</a>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==============================================
+     PAGE 9: 404 NOT FOUND
+============================================== -->
+<div class="page" id="page-404">
+  <div class="about-hero" style="min-height: calc(100vh - 72px); display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <h1 style="font-family: 'Playfair Display', serif; font-size: clamp(6rem, 15vw, 12rem); line-height: 1; margin-bottom: 0;"><span>404</span></h1>
+    <p style="font-size: 1.5rem; margin-bottom: 40px; font-weight: 500;">Oops! The page you're looking for doesn't exist.</p>
+    <a href="#" onclick="showPage('home')" class="btn-primary" style="display: inline-block;">Back to Home</a>
+  </div>
+</div>
+
+<!-- ==============================================
      SHARED FOOTER (single instance for all pages)
 ============================================== -->
 <footer>
@@ -840,14 +812,20 @@
         <li><a href="#" onclick="showPage('gallery')">Gallery</a></li>
         <li><a href="#" onclick="showPage('news')">News &amp; Blog</a></li>
         <li><a href="#" onclick="showPage('contact')">Contact Us</a></li>
+        <li><a href="#" onclick="showPage('privacy'); window.scrollTo(0,0);">Privacy Policy</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h5>Contact</h5>
       <ul>
         <li><a href="tel:0656068168"><i class="fas fa-phone"></i> 065 606 8168</a></li>
+<<<<<<< HEAD
         <li><a href="mailto:sithelodbn@yahoo.com"><i class="fas fa-envelope"></i> sithelodbn@yahoo.com</a></li>
         <li><a href="https://maps.google.com/?q=65+Victoria+str+Dundee+3000" target="_blank"><i class="fas fa-map-marker-alt"></i> Section 2 &amp; 3, StockOwners building, 65 Victoria str, Dundee, 3000</a></li>
+=======
+        <li><a href="mailto:info@sithelonpo.co.za"><i class="fas fa-envelope"></i> info@sithelonpo.co.za</a></li>
+        <li><a href="https://maps.google.com/?q=44+Alphen+Avenue+Montclair+Durban" target="_blank"><i class="fas fa-map-marker-alt"></i> 44 Alphen Ave, Montclair, Durban, 4001</a></li>
+>>>>>>> c27cdbf4deac82b253288454a120bfb6f2e0a69d
       </ul>
     </div>
     <div class="footer-col">
@@ -866,19 +844,19 @@
   </div>
   <div class="footer-bottom">
     <span>&copy; 2025 SITHELO NPO &ndash; Sivusa Ithemba Lembokodo. All rights reserved.</span>
-    <a href="mailto:sithelodbn@yahoo.com">sithelodbn@yahoo.com</a>
+    <a href="mailto:info@sithelonpo.co.za">info@sithelonpo.co.za</a>
   </div>
 </footer>
 
 <!-- -- FLOATING SOCIAL BUTTONS -- -->
 <div class="floating-social">
-  <a class="fsoc-btn fsoc-wa" href="https://wa.me/27656068168" target="_blank" title="WhatsApp">
+  <a class="fsoc-btn fsoc-wa" href="https://wa.me/27656068168" target="_blank" title="WhatsApp" aria-label="WhatsApp">
     <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.119.554 4.107 1.523 5.83L.057 23.999l6.304-1.654A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.849 0-3.574-.498-5.057-1.365l-.362-.215-3.742.982.999-3.648-.235-.374A9.791 9.791 0 012.182 12c0-5.414 4.404-9.818 9.818-9.818 5.414 0 9.818 4.404 9.818 9.818 0 5.414-4.404 9.818-9.818 9.818z"/></svg>
   </a>
-  <a class="fsoc-btn fsoc-fb" href="https://www.facebook.com/share/1GasTbGujx/" target="_blank" title="Facebook">
+  <a class="fsoc-btn fsoc-fb" href="https://www.facebook.com/share/1GasTbGujx/" target="_blank" title="Facebook" aria-label="Facebook">
     <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
   </a>
-  <a class="fsoc-btn fsoc-ig" href="https://www.instagram.com/sithelo_npo" target="_blank" title="Instagram">
+  <a class="fsoc-btn fsoc-ig" href="https://www.instagram.com/sithelo_npo" target="_blank" title="Instagram" aria-label="Instagram">
     <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
   </a>
 </div>

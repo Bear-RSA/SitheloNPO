@@ -1,15 +1,17 @@
-// Expose functions to global scope for Vite production build compatibility
 window.showPage = showPage;
 window.toggleMenu = toggleMenu;
 window.filterGallery = filterGallery;
-window.submitForm = submitForm;
 window.showToast = showToast;
-window.prepareDonation = prepareDonation;
+
 
 // -- Page Navigation --
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  const target = document.getElementById('page-' + id);
+  let target = document.getElementById('page-' + id);
+  if (!target) {
+    target = document.getElementById('page-404');
+    id = '404';
+  }
   if (target) target.classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
   // Update active nav link
@@ -26,6 +28,7 @@ function toggleMenu() {
 
 // -- Gallery Filter --
 const galleryItems = [
+<<<<<<< HEAD
   { cat: 'community', url: '/assets/gallery/Community%20Engagement/IMG-20260703-WA0006.jpg', label: 'Community Engagement' },
   { cat: 'community', url: '/assets/gallery/Community%20Engagement/IMG-20260703-WA0007.jpg', label: 'Community Engagement' },
   { cat: 'community', url: '/assets/gallery/Community%20Engagement/IMG-20260703-WA0012.jpg', label: 'Community Engagement' },
@@ -42,6 +45,17 @@ const galleryItems = [
   { cat: 'youth', url: '/assets/gallery/Youth%20Development/IMG-20260703-WA0021.jpg', label: 'Youth Development' },
   { cat: 'general', url: '/assets/gallery/General/IMG-20260703-WA0022.jpg', label: 'General' },
   { cat: 'general', url: '/assets/gallery/General/IMG-20260703-WA0024.jpg', label: 'General' }
+=======
+  { cat: 'school',    img: 'https://via.placeholder.com/600x400?text=School+Drive', label: 'Back-to-School Drive',       sub: 'Montclair Primary, 2025' },
+  { cat: 'skills',   img: 'https://via.placeholder.com/600x400?text=Skills+Training', label: 'Sewing & Crafts Training',   sub: 'Skills Programme, 2024' },
+  { cat: 'women',    img: 'https://via.placeholder.com/600x400?text=Women%27s+Month', label: "Women's Month Dialogue",      sub: 'August 2024' },
+  { cat: 'youth',    img: 'https://via.placeholder.com/600x400?text=Youth+Mentorship', label: 'Youth Mentorship Session',   sub: 'Durban South, 2024' },
+  { cat: 'community',img: 'https://via.placeholder.com/600x400?text=Community+Outreach', label: 'Community Outreach Day',     sub: 'Montclair, 2024' },
+  { cat: 'school',   img: 'https://via.placeholder.com/600x400?text=Stationery+Drive', label: 'Stationery Collection',       sub: 'School Drive 2024' },
+  { cat: 'skills',   img: 'https://via.placeholder.com/600x400?text=Trade+Workshop', label: 'Vocational Trade Workshop',  sub: 'Skills Centre, 2024' },
+  { cat: 'women',    img: 'https://via.placeholder.com/600x400?text=Leadership+Training', label: 'Leadership Training',         sub: "Women's Programme" },
+  { cat: 'community',img: 'https://via.placeholder.com/600x400?text=Shoe+Drive', label: 'Winter Warmth &mdash; Shoe Drive', sub: 'June 2024' },
+>>>>>>> c27cdbf4deac82b253288454a120bfb6f2e0a69d
 ];
 
 function renderGallery(filter) {
@@ -50,7 +64,11 @@ function renderGallery(filter) {
   const filtered = filter === 'all' ? galleryItems : galleryItems.filter(i => i.cat === filter);
   grid.innerHTML = filtered.map(item => `
     <div class="gallery-item" data-cat="${item.cat}">
+<<<<<<< HEAD
       <img src="${item.url}" alt="${item.label}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" />
+=======
+      <img src="${item.img}" alt="${item.label}" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+>>>>>>> c27cdbf4deac82b253288454a120bfb6f2e0a69d
       <div class="gallery-overlay"><span class="gallery-overlay-text">${item.label}</span></div>
     </div>
   `).join('');
@@ -62,18 +80,99 @@ function filterGallery(cat, btn) {
   renderGallery(cat);
 }
 
-// -- Contact Form --
-function submitForm() {
-  const name  = document.getElementById('f-name')?.value.trim();
-  const email = document.getElementById('f-email')?.value.trim();
-  const msg   = document.getElementById('f-msg')?.value.trim();
-  if (!name || !email || !msg) {
-    showToast('Please fill in all required fields.');
-    return;
-  }
-  document.getElementById('contact-form').style.display = 'none';
-  document.getElementById('form-success').classList.add('show');
-  showToast('Message sent! We will be in touch within 48 hours.');
+// -- Contact Form (fetch → /api/contact) --
+function initContactForm() {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        form.style.display = 'none';
+        const successEl = document.getElementById('form-success');
+        if (successEl) successEl.classList.add('show');
+        showToast('Message sent! We will be in touch within 48 hours.');
+        form.reset();
+      } else {
+        showToast(data.error || 'Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      console.error('Contact form error:', err);
+      showToast('Network error. Please check your connection and try again.');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnText;
+    }
+  });
+}
+
+// -- Volunteer Form (fetch → /api/volunteer) --
+function initVolunteerForm() {
+  const form = document.getElementById('volunteer-form');
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
+
+    try {
+      const res = await fetch('/api/volunteer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        form.style.display = 'none';
+        // Create and show success message
+        let successEl = form.parentElement.querySelector('.form-success');
+        if (!successEl) {
+          successEl = document.createElement('div');
+          successEl.className = 'form-success';
+          successEl.innerHTML = '<i class="fas fa-check-circle"></i> Thank you for volunteering! We\'ll be in touch soon.';
+          form.parentElement.insertBefore(successEl, form.nextSibling);
+        }
+        successEl.classList.add('show');
+        showToast('Application submitted! Thank you for volunteering.');
+        form.reset();
+      } else {
+        showToast(data.error || 'Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      console.error('Volunteer form error:', err);
+      showToast('Network error. Please check your connection and try again.');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnText;
+    }
+  });
 }
 
 // -- Toast --
@@ -84,139 +183,7 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 3500);
 }
 
-// ============================================================
-// -- PayFast Donation Form Logic --
-// ============================================================
 
-/**
- * prepareDonation()
- * Called via onsubmit on the donate form. Validates input, syncs
- * the hidden PayFast fields (amount, name_first, email_address),
- * and allows the native form POST to PayFast sandbox to proceed.
- *
- * Returns true  → form submits to PayFast
- * Returns false → submission is blocked (validation failed)
- */
-function prepareDonation() {
-  const nameInput   = document.getElementById('d-name');
-  const emailInput  = document.getElementById('d-email');
-  const customInput = document.getElementById('d-custom');
-  const amountField = document.getElementById('pf-amount');
-
-  // 1. Determine final amount: custom overrides radio selection
-  let finalAmount;
-  const customVal = parseFloat(customInput?.value);
-  if (!isNaN(customVal) && customVal >= 10) {
-    finalAmount = customVal.toFixed(2);
-  } else {
-    // Use the selected radio value
-    const selected = document.querySelector('input[name="donate_amount"]:checked');
-    finalAmount = selected ? parseFloat(selected.value).toFixed(2) : '250.00';
-  }
-
-  // 2. Validate minimum amount
-  if (parseFloat(finalAmount) < 10) {
-    showToast('Please enter a donation amount of at least R10.');
-    return false;
-  }
-
-  // 3. Validate name and email
-  const name = nameInput?.value.trim();
-  const email = emailInput?.value.trim();
-  if (!name) {
-    showToast('Please enter your name.');
-    nameInput?.focus();
-    return false;
-  }
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    showToast('Please enter a valid email address.');
-    emailInput?.focus();
-    return false;
-  }
-
-  // 4. Sync hidden PayFast fields
-  amountField.value = finalAmount;
-  document.getElementById('pf-name-first').value = name;
-  document.getElementById('pf-email-address').value = email;
-
-  // 5. Show confirmation toast
-  showToast(`Redirecting to PayFast — R${finalAmount} donation. Thank you!`);
-
-  // Allow form to submit natively to PayFast
-  return true;
-}
-
-/**
- * initDonationForm()
- * Sets up event listeners for the donation amount radio buttons
- * and custom input. Dynamically sets return/cancel/notify URLs
- * based on the current window origin.
- */
-function initDonationForm() {
-  const labels   = document.querySelectorAll('.donate-amount-label');
-  const customIn = document.getElementById('d-custom');
-  const amountHidden = document.getElementById('pf-amount');
-
-  if (!labels.length) return; // Not on donate page yet
-
-  // -- Set PayFast return URLs dynamically --
-  // In development (Vite), this will be localhost:5173
-  // In production, this will be your live domain
-  const origin = window.location.origin;
-  const returnUrl = document.getElementById('pf-return-url');
-  const cancelUrl = document.getElementById('pf-cancel-url');
-  const notifyUrl = document.getElementById('pf-notify-url');
-
-  if (returnUrl) returnUrl.value = origin + '/success.html';
-  if (cancelUrl) cancelUrl.value = origin + '/cancel.html';
-  // ITN notify URL should point to your server (Express backend)
-  // For local dev, PayFast can't reach localhost — use a tunnel or leave blank
-  if (notifyUrl) notifyUrl.value = origin + '/api/itn';
-
-  // -- Radio button selection handling --
-  labels.forEach(label => {
-    label.addEventListener('click', () => {
-      // Clear custom input when a preset is selected
-      if (customIn) customIn.value = '';
-
-      // Update visual state
-      labels.forEach(l => {
-        l.classList.remove('active');
-        l.style.borderColor = 'var(--silver-light)';
-      });
-      label.classList.add('active');
-      label.style.borderColor = 'var(--magenta)';
-
-      // Check the radio
-      const radio = label.querySelector('input[type="radio"]');
-      if (radio) radio.checked = true;
-
-      // Sync hidden amount field
-      const val = label.getAttribute('data-amount');
-      if (amountHidden && val) {
-        amountHidden.value = parseFloat(val).toFixed(2);
-      }
-    });
-  });
-
-  // -- Custom amount input handling --
-  if (customIn) {
-    customIn.addEventListener('input', () => {
-      const val = parseFloat(customIn.value);
-      if (!isNaN(val) && val >= 10) {
-        // Deselect all radio buttons visually
-        labels.forEach(l => {
-          l.classList.remove('active');
-          l.style.borderColor = 'var(--silver-light)';
-          const radio = l.querySelector('input[type="radio"]');
-          if (radio) radio.checked = false;
-        });
-        // Sync hidden amount
-        if (amountHidden) amountHidden.value = val.toFixed(2);
-      }
-    });
-  }
-}
 
 // -- Impact Stats Counter --
 function initImpactStats() {
@@ -306,7 +273,13 @@ function initNewsletterForm() {
 // -- Init --
 document.addEventListener('DOMContentLoaded', () => {
   renderGallery('all');
-  initDonationForm();
   initImpactStats();
+<<<<<<< HEAD
   initNewsletterForm();
+=======
+  initContactForm();
+  initVolunteerForm();
+>>>>>>> c27cdbf4deac82b253288454a120bfb6f2e0a69d
 });
+
+
