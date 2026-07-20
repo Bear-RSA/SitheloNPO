@@ -42,6 +42,8 @@ const galleryItems = [
   { cat: 'youth', url: '/assets/gallery/youth-development/IMG-20260703-WA0019.jpg', label: 'Youth Development' },
   { cat: 'youth', url: '/assets/gallery/youth-development/IMG-20260703-WA0020.jpg', label: 'Youth Development' },
   { cat: 'youth', url: '/assets/gallery/youth-development/IMG-20260703-WA0021.jpg', label: 'Youth Development' },
+  { cat: 'youth', url: '/assets/gallery/youth-development/WhatsApp%20Image%202026-07-18%20at%205.07.12%20PM.jpeg', label: 'Youth Development' },
+  { cat: 'youth', url: '/assets/gallery/youth-development/WhatsApp%20Image%202026-07-18%20at%205.07.58%20PM.jpeg', label: 'Youth Development' },
   { cat: 'general', url: '/assets/gallery/general/IMG-20260703-WA0022.jpg', label: 'General' },
   { cat: 'general', url: '/assets/gallery/general/IMG-20260703-WA0024.jpg', label: 'General' }
 ];
@@ -212,53 +214,12 @@ function animateValue(obj, start, end, duration) {
   window.requestAnimationFrame(step);
 }
 
-// -- Newsletter Form --
-function initNewsletterForm() {
-  const form = document.getElementById('newsletter-form');
-  if (!form) return;
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const emailInput = form.querySelector('input[name="email"]');
-    const email = emailInput?.value.trim();
-    if (!email) return;
-
-    // Show loading state (optional, just disable button)
-    const btn = form.querySelector('button');
-    if (btn) {
-      btn.disabled = true;
-      btn.style.opacity = '0.5';
-    }
-
-    try {
-      const response = await fetch('/api/newsletter', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email })
-      });
-      
-      if (response.ok) {
-        showToast('Thank you for subscribing!');
-        form.reset();
-      } else {
-        showToast('Something went wrong. Please try again later.');
-      }
-    } catch (err) {
-      showToast('Network error. Please try again.');
-    } finally {
-      if (btn) {
-        btn.disabled = false;
-        btn.style.opacity = '1';
-      }
-    }
-  });
-}
 
 // -- Init --
 document.addEventListener('DOMContentLoaded', () => {
   renderGallery('all');
   initImpactStats();
-  initNewsletterForm();
   if (typeof initContactForm === 'function') initContactForm();
   if (typeof initVolunteerForm === 'function') initVolunteerForm();
 });

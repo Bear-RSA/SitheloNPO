@@ -257,6 +257,61 @@
     color: rgba(255,255,255,0.85);
   }
 
+  /* -- SPONSORS -- */
+  .sponsors {
+    padding: 40px 0;
+    background: var(--white);
+    position: relative;
+  }
+  .sponsors-title {
+    text-align: center;
+    color: var(--dark);
+    opacity: 0.4;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+  }
+  .sponsors-track {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5vw;
+  }
+  .sponsor-logo {
+    height: 60px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    animation: floatLogo 4s ease-in-out infinite;
+  }
+  .sponsor-logo:hover {
+    animation-play-state: paused;
+    transform: scale(1.1);
+  }
+  .sponsor-logo:nth-child(1) { animation-delay: 0s; }
+  .sponsor-logo:nth-child(2) { animation-delay: 0.6s; }
+  .sponsor-logo:nth-child(3) { animation-delay: 1.2s; }
+  .sponsor-logo:nth-child(4) { animation-delay: 1.8s; }
+  .sponsor-logo:nth-child(5) { animation-delay: 2.4s; }
+  .sponsor-logo:nth-child(6) { animation-delay: 3.0s; }
+  .sponsor-logo:nth-child(7) { animation-delay: 3.6s; }
+
+  @keyframes floatLogo {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sponsor-logo {
+      animation: none;
+    }
+  }
+
   /* -- FOCUS CARDS -- */
   .focus-section {
     padding: 80px 5vw;
@@ -640,7 +695,7 @@
   }
   .footer-inner {
     max-width: 1180px; margin: 0 auto;
-    display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 40px;
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
     margin-bottom: 32px;
   }
   .footer-brand .brand-name {
@@ -691,8 +746,9 @@
   .footer-bottom {
     border-top: 1px solid rgba(255,255,255,0.08);
     padding-top: 20px; display: flex;
-    justify-content: space-between; align-items: center; flex-wrap: gap;
+    justify-content: center; align-items: center;
     font-size: 0.78rem; gap: 12px; flex-wrap: wrap;
+    text-align: center;
   }
   .footer-bottom a { color: var(--magenta-light); text-decoration: none; }
 
