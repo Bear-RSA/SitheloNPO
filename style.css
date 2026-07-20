@@ -300,6 +300,7 @@
   .sponsor-logo:nth-child(5) { animation-delay: 2.4s; }
   .sponsor-logo:nth-child(6) { animation-delay: 3.0s; }
   .sponsor-logo:nth-child(7) { animation-delay: 3.6s; }
+  .sponsor-logo:nth-child(8) { animation-delay: 4.2s; }
 
   @keyframes floatLogo {
     0%, 100% { transform: translateY(0); }
